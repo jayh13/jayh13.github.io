@@ -16,18 +16,19 @@
 	<body>
 		<div id="app">
 			<h1>Sherwin Williams Quick Lookup</h1>
-			<table>
+			<table style="width: 100%">
 				<tr>
-					<td style="color: green;">Category Filter:</td>
-					<td><input v-model="categoryfilter"></td>
-				</tr>
-				<tr>
-					<td style="color: blue;">Product Filter:</td>
-					<td><input v-model="productfilter"></td>
-				</tr>
-				<tr>
-					<td>Option Filter:</td>
-					<td><input v-model="optionfilter"></td>
+					<td style="width: auto; color: green; text-align: right;">Category Filter:</td>
+					<td><input v-model="categoryfilter" style="width: 100%;"></td>
+				<!-- /tr>
+				<tr -->
+					<td style="width: auto; color: blue; text-align: right;">Product Filter:</td>
+					<td><input v-model="productfilter" style="width: 100%;"></td>
+				<!-- /tr>
+				<tr -->
+					<td style="width: auto; text-align: right;">Option Filter:</td>
+					<td><input v-model="optionfilter" style="width: 100%;"></td>
+					<td style="width: auto;"><button v-on:click="ClearSearch()">Clear</button>
 				</tr>
 			</table>
 			<div class="cats">
@@ -8520,6 +8521,11 @@
 					}]
 				},
 				methods: {
+					ClearSearch: function() {
+						this.categoryfilter = "";
+						this.productfilter = "";
+						this.optionfilter = "";
+					},
 					catfilter: function(categories, categoryfilter) {
 						/* foreach(cat in categories) {
 							if (cat.category.includes(categoryfilter)) {
