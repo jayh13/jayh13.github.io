@@ -1,0 +1,97 @@
+<html>
+	<head>
+		<title>Colin's Transformer</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h1>Multi Step Transform Tool</h1>
+			<table border="1" style="border: 1px solid black; width: 100%;">
+				<tr>
+					<td rowspan="2" style="width: 50%; vertical-align: top;">
+						<div v-for="trans in transforms">
+							<table border="1" style="width: 100%; border: 1px solid green;">
+								<tr style="height:0px;">
+									<th width="5%"></th><th width="5%"></th><th width="5%"></th><th width="5%"></th><th width="5%"></th><th width="5%"></th><th width="5%"></th><th width="5%"></th><th width="5%"></th><th width="5%"></th>
+									<th width="5%"></th><th width="5%"></th><th width="5%"></th><th width="5%"></th><th width="5%"></th><th width="5%"></th><th width="5%"></th><th width="5%"></th><th width="5%"></th><th width="5%"></th>
+								</tr>
+								<tr>
+									<td colspan="1"><button v-on:click="delrule(trans.seq)">Del</button></td>
+									<td colspan="1">Rule:{{ trans.seq }}</td>
+									<td colspan="17"><input v-model="trans.desc" v-on:blur="rulechange(trans.seq)" style="width: 100%;" placeholder="Rule Description" /></td>
+									<td colspan="1"><button v-on:click="moveup(trans.seq)">Up</button></td>
+								</tr>
+								<tr>
+									<td colspan="1"><button v-on:click="applyrule(trans.seq)">Apply</button></td>
+									<td colspan="1">From:</td>
+									<td colspan="8"><input v-model="trans.frompattern" v-on:blur="rulechange(trans.seq)" style="width: 100%;" placeholder="Regular Expression" /></td>
+									<td colspan="1">To:</td>
+									<td colspan="8"><input v-model="trans.topattern" v-on:blur="rulechange(trans.seq)" style="width: 100%;" placeholder="Regular Expression" /></td>
+									<td colspan="1"><button v-on:click="movedown(trans.seq)">Down</button></td>
+								</tr>
+							</table>
+						<div>
+					</td>
+					<td style="width: 50%;">
+						<b>Input</b><br/>
+						<textarea v-model="inputdata" style="width: 100%; height: 300px;"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>Output</b><br/>
+						<textarea v-model="outputdata" style="width: 100%; height: 300px;"></></textarea>
+					</td>
+				</tr>
+			</table>
+
+
+
+		</div>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#app',
+				data: {
+					inputdata: "",
+					outputdata: "",
+					transforms: [
+						{
+							seq: 1,
+							desc: "",
+							frompattern: "",
+							topattern: "",
+							applied: "",
+						}],
+				},
+				methods: {
+					delrule(seq) {
+					
+					},
+					movup(seq) {
+					
+					},
+					movedown(seq) {
+					
+					},
+					applyrule(seq) {
+					
+					},
+					rulechange(seq) {
+						if (seq == this.transforms.length) {
+							var t = this.transforms[seq - 1];
+							if (t.desc !== "" || t.topattern !== "" || t.frompattern !== "") {
+								this.transforms.push({
+										seq: seq + 1,
+										desc: "",
+										frompattern: "",
+										topattern: "",
+										applied: "",
+									})
+							}
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
