@@ -52,6 +52,9 @@
 			var app = new Vue({
 				el: '#app',
 				data: {
+					filestransforms: [],
+					filestransin: [],
+					filestransout: [],
 					inputdata: "",
 					outputdata: "",
 					transforms: [
@@ -62,6 +65,53 @@
 							topattern: "",
 							applied: "",
 						}],
+				},
+				init: {
+					// Load the list of transform files
+					var xmlhttp1 = new XMLHttpRequest();
+					xmlhttp1.onreadystatechange = function() {
+						var mydoc1 = "";
+						if (xmlhttp1.readyState == XMLHttpRequest.DONE) {
+							if (xmlhttp1.status == 200) {
+								mydoc1 = xmlhttp1.responseText;
+								console.log(mydoc1);
+							} else {
+								alert("Error getting transform directory list");
+							}
+						}
+					};
+					xmlhttp1.open("GET", "https://jayh13.github.io/transin/files.js", true);
+					xmlhttp1.send();
+					// Load the list of transform files
+					var xmlhttp2 = new XMLHttpRequest();
+					xmlhttp2.onreadystatechange = function() {
+						var mydoc2 = "";
+						if (xmlhttp2.readyState == XMLHttpRequest.DONE) {
+							if (xmlhttp2.status == 200) {
+								mydoc2 = xmlhttp2.responseText;
+								console.log(mydoc2);
+							} else {
+								alert("Error getting transform directory list");
+							}
+						}
+					};
+					xmlhttp2.open("GET", "https://jayh13.github.io/transin/files.js", true);
+					xmlhttp2.send();
+					// Load the list of transform files
+					var xmlhttp3 = new XMLHttpRequest();
+					xmlhttp3.onreadystatechange = function() {
+						var mydoc3 = "";
+						if (xmlhttp3.readyState == XMLHttpRequest.DONE) {
+							if (xmlhttp3.status == 200) {
+								mydoc3 = xmlhttp3.responseText;
+								console.log(mydoc3);
+							} else {
+								alert("Error getting transform directory list");
+							}
+						}
+					};
+					xmlhttp3.open("GET", "https://jayh13.github.io/transin/files.js", true);
+					xmlhttp3.send();
 				},
 				methods: {
 					delrule(seq) {
