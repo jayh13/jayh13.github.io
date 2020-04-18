@@ -9,6 +9,10 @@
 			<table border="1" style="border: 1px solid black; width: 100%;">
 				<tr>
 					<td rowspan="2" style="width: 50%; vertical-align: top;">
+						<button>Load Transformation</button>
+						<select v-for="filet in filestransforms">
+							<option value="{{ filet }}">{{ filet }}</option>
+						</select>
 						<div v-for="trans in transforms">
 							<table border="1" style="width: 100%; border: 1px solid green;">
 								<tr style="height:0px;">
@@ -24,29 +28,38 @@
 								<tr>
 									<td colspan="1"><button v-on:click="applyrule(trans.seq)">Apply</button></td>
 									<td colspan="1">From:</td>
-									<td colspan="8"><input v-model="trans.frompattern" v-on:blur="rulechange(trans.seq)" style="width: 100%;" placeholder="Regular Expression" /></td>
-									<td colspan="1">To:</td>
-									<td colspan="8"><input v-model="trans.topattern" v-on:blur="rulechange(trans.seq)" style="width: 100%;" placeholder="Regular Expression" /></td>
+									<td colspan="17"><input v-model="trans.frompattern" v-on:blur="rulechange(trans.seq)" style="width: 100%;" placeholder="Regular Expression" /></td>
 									<td colspan="1"><button v-on:click="movedown(trans.seq)">Down</button></td>
+								</tr>
+								<tr>
+									<td colspan="1"></td>
+									<td colspan="1">To:</td>
+									<td colspan="17"><input v-model="trans.topattern" v-on:blur="rulechange(trans.seq)" style="width: 100%;" placeholder="Regular Expression" /></td>
+									<td colspan="1"></td>
 								</tr>
 							</table>
 						<div>
 					</td>
 					<td style="width: 50%;">
-						<b>Input</b><br/>
+						<b>Input</b>
+						<button>Load Transformation</button>
+						<select v-for="filetin in filestransin">
+							<option value="{{ filetin }}">{{ filetin }}</option>
+						</select><br/>
 						<textarea v-model="inputdata" style="width: 100%; height: 300px;"></textarea>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<b>Output</b><br/>
+						<b>Output</b>
+						<button>Load Transformation</button>
+						<select v-for="filetout in filestransout">
+							<option value="{{ filetout }}">{{ filetout }}</option>
+						</select><br/>
 						<textarea v-model="outputdata" style="width: 100%; height: 300px;"></></textarea>
 					</td>
 				</tr>
 			</table>
-
-
-
 		</div>
 		<script type="text/javascript">
 			var app = new Vue({
@@ -67,50 +80,47 @@
 						}],
 				},
 				created: function() {
-					// Load the list of transform files
+					// Load the list of transformmation files
 					var xmlhttp1 = new XMLHttpRequest();
 					xmlhttp1.onreadystatechange = function() {
-						var mydoc1 = "";
 						if (xmlhttp1.readyState == XMLHttpRequest.DONE) {
 							if (xmlhttp1.status == 200) {
-								mydoc1 = xmlhttp1.responseText;
-								console.log(mydoc1);
+								filestransforms = JSON.parse( xmlhttp1.responseText );
+								console.log(filestransforms);
 							} else {
 								alert("Error getting transform directory list");
 							}
 						}
 					};
-					xmlhttp1.open("GET", "https://jayh13.github.io/transin/files.js", true);
+					xmlhttp1.open("GET", "https://jayh13.github.io/transforms/files.js", true);
 					xmlhttp1.send();
-					// Load the list of transform files
+					// Load the list of transform input files
 					var xmlhttp2 = new XMLHttpRequest();
 					xmlhttp2.onreadystatechange = function() {
-						var mydoc2 = "";
 						if (xmlhttp2.readyState == XMLHttpRequest.DONE) {
 							if (xmlhttp2.status == 200) {
-								mydoc2 = xmlhttp2.responseText;
-								console.log(mydoc2);
+								filestransin = JSON.parse( xmlhttp2.responseText );
+								console.log(filestransin);
 							} else {
-								alert("Error getting transform directory list");
+								alert("Error getting transform input directory list");
 							}
 						}
 					};
 					xmlhttp2.open("GET", "https://jayh13.github.io/transin/files.js", true);
 					xmlhttp2.send();
-					// Load the list of transform files
+					// Load the list of transform output files
 					var xmlhttp3 = new XMLHttpRequest();
 					xmlhttp3.onreadystatechange = function() {
-						var mydoc3 = "";
 						if (xmlhttp3.readyState == XMLHttpRequest.DONE) {
 							if (xmlhttp3.status == 200) {
-								mydoc3 = xmlhttp3.responseText;
-								console.log(mydoc3);
+								filestransout = JSON.parse( xmlhttp3.responseText );
+								console.log(filestransout);
 							} else {
-								alert("Error getting transform directory list");
+								alert("Error getting transform output directory list");
 							}
 						}
 					};
-					xmlhttp3.open("GET", "https://jayh13.github.io/transin/files.js", true);
+					xmlhttp3.open("GET", "https://jayh13.github.io/transout/files.js", true);
 					xmlhttp3.send();
 				},
 				methods: {
