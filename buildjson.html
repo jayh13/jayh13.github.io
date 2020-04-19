@@ -138,10 +138,20 @@
 						return null;
 					},
 					movup(seq) {
-						return null;
+						var a = this.transforms[seq - 1];
+						var b = this.transforms[seq - 2];
+						a.seq = seq - 1;
+						b.seq = seq;
+						this.transforms[seq - 1] = b;
+						this.transforms[seq - 2] = a;
 					},
 					movedown(seq) {
-						return null;
+						var a = this.transforms[seq - 1];
+						var b = this.transforms[seq];
+						a.seq = seq;
+						b.seq = seq - 1;
+						this.transforms[seq - 1] = b;
+						this.transforms[seq] = a;
 					},
 					applyrule(seq) {
 						var inp = this.inputdata;
