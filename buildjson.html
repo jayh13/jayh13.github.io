@@ -154,8 +154,8 @@
 						var b = this.transforms[seq];
 						this.transforms[seq - 1] = "";
 						this.transforms[seq] = "";
-						a.seq = seq;
-						b.seq = seq - 1;
+						a.seq = seq + 1;
+						b.seq = seq;
 						this.transforms[seq - 1] = b;
 						this.transforms[seq] = a;
 					},
