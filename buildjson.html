@@ -9,10 +9,10 @@
 			<table border="1" style="border: 1px solid black; width: 100%;">
 				<tr>
 					<td rowspan="2" style="width: 50%; vertical-align: top;">
-						<button>Load Transformation</button>
-						<select v-for="filet in filestransforms">
-							<option value="{{ filet }}">{{ filet }}</option>
+						<select v-on:Change="onchagefiletransform()" :key="selectedfiletransform">
+							<option v-for="filet in filestransforms" :value="filet">{{ filet }}</option>
 						</select>
+						<button>Load Transformation</button>
 						<div v-for="trans in transforms">
 							<table border="1" style="width: 100%; border: 1px solid green;">
 								<tr style="height:0px;">
@@ -42,21 +42,21 @@
 					</td>
 					<td style="width: 50%;">
 						<b>Input</b>
-						<button>Load Transformation</button>
-						<select v-for="filetin in filestransin">
-							<option value="{{ filetin }}">{{ filetin }}</option>
-						</select><br/>
+						<select v-on:Change="onchagefiletransin()" :key="selectedfiletransin">
+							<option v-for="filetin in filestransin" :value="filetin">{{ filetin }}</option>
+						</select>
+						<button>Load Input</button><br/>
 						<textarea v-model="inputdata" style="width: 100%; height: 300px;"></textarea>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<b>Output</b>
-						<button>Load Transformation</button>
-						<select v-for="filetout in filestransout">
-							<option value="{{ filetout }}">{{ filetout }}</option>
-						</select><br/>
-						<textarea v-model="outputdata" style="width: 100%; height: 300px;"></></textarea>
+						<select v-on:Change="onchagefiletransout()" :key="selectedfiletransout">
+							<option v-for="filetout in filestransout" :value="filetout">{{ filetout }}</option>
+						</select>>
+						<button>Load Output</button><br/
+						<textarea v-model="outputdata" style="width: 100%; height: 300px;"></textarea>
 					</td>
 				</tr>
 			</table>
@@ -65,11 +65,12 @@
 			var app = new Vue({
 				el: '#app',
 				data: {
-					filestransforms: [],
-					filestransin: [],
-					filestransout: [],
-					inputdata: "",
-					outputdata: "",
+					filestransforms: ["Init"],
+					selectedfiletransform: "",
+					filestransin: ["Init"],
+					selectedfiletransin: "",
+					filestransout: ["Init"],
+					selectedfiletransout: "",
 					transforms: [
 						{
 							seq: 1,
@@ -78,6 +79,8 @@
 							topattern: "",
 							applied: "",
 						}],
+					inputdata: "",
+					outputdata: "",
 				},
 				created: function() {
 					// Load the list of transformmation files
@@ -85,8 +88,7 @@
 					xmlhttp1.onreadystatechange = function() {
 						if (xmlhttp1.readyState == XMLHttpRequest.DONE) {
 							if (xmlhttp1.status == 200) {
-								filestransforms = JSON.parse( xmlhttp1.responseText );
-								console.log(filestransforms);
+								document.querySelector("#app").__vue__.filestransforms = JSON.parse( xmlhttp1.responseText.replace('\r\n','') );
 							} else {
 								alert("Error getting transform directory list");
 							}
@@ -94,13 +96,13 @@
 					};
 					xmlhttp1.open("GET", "https://jayh13.github.io/transforms/files.js", true);
 					xmlhttp1.send();
+					
 					// Load the list of transform input files
 					var xmlhttp2 = new XMLHttpRequest();
 					xmlhttp2.onreadystatechange = function() {
 						if (xmlhttp2.readyState == XMLHttpRequest.DONE) {
 							if (xmlhttp2.status == 200) {
-								filestransin = JSON.parse( xmlhttp2.responseText );
-								console.log(filestransin);
+								document.querySelector("#app").__vue__.filestransin = JSON.parse( xmlhttp2.responseText.replace('\r\n','') );
 							} else {
 								alert("Error getting transform input directory list");
 							}
@@ -108,13 +110,13 @@
 					};
 					xmlhttp2.open("GET", "https://jayh13.github.io/transin/files.js", true);
 					xmlhttp2.send();
+					
 					// Load the list of transform output files
 					var xmlhttp3 = new XMLHttpRequest();
 					xmlhttp3.onreadystatechange = function() {
 						if (xmlhttp3.readyState == XMLHttpRequest.DONE) {
 							if (xmlhttp3.status == 200) {
-								filestransout = JSON.parse( xmlhttp3.responseText );
-								console.log(filestransout);
+								document.querySelector("#app").__vue__.filestransout = JSON.parse( xmlhttp3.responseText.replace('\r\n','') );
 							} else {
 								alert("Error getting transform output directory list");
 							}
@@ -148,6 +150,28 @@
 										applied: "",
 									})
 							}
+						}
+					},
+					onchagefiletransform() {
+						if (selectedfiletransform == "NEW") {
+							transforms: [
+								{
+									seq: 1,
+									desc: "",
+									frompattern: "",
+									topattern: "",
+									applied: "",
+								}]
+						}
+					},
+					onchagefiletransin() {
+						if (selectedfiletransin == "NEW") {
+							inputdata: "";
+						}
+					},
+					onchagefiletransout() {
+						if (selectedfiletransout == "NEW") {
+							outputdata: "";
 						}
 					}
 				}
