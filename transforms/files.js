@@ -1,4 +1,4 @@
 [
 "NEW",
-"Light Industrial.js"
+"General Purpose.js"
 ]
