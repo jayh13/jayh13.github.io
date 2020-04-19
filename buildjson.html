@@ -138,20 +138,22 @@
 						return null;
 					},
 					moveup(seq) {
-						var a = this.transforms[seq - 1];
-						var b = this.transforms[seq - 2];
-						a.seq = seq - 1;
-						b.seq = seq;
-						this.transforms[seq - 1] = b;
-						this.transforms[seq - 2] = a;
+						this.splice(seq - 2, 0, this.splice(seq - 1, 1)[0]);
+						//var a = this.transforms[seq - 1];
+						//var b = this.transforms[seq - 2];
+						//a.seq = seq - 1;
+						//b.seq = seq;
+						//this.transforms[seq - 1] = b;
+						//this.transforms[seq - 2] = a;
 					},
 					movedown(seq) {
-						var a = this.transforms[seq - 1];
-						var b = this.transforms[seq];
-						a.seq = seq;
-						b.seq = seq - 1;
-						this.transforms[seq - 1] = b;
-						this.transforms[seq] = a;
+						this.splice(seq, 0, this.splice(seq - 1, 1)[0]);
+						//var a = this.transforms[seq - 1];
+						//var b = this.transforms[seq];
+						//a.seq = seq;
+						//b.seq = seq - 1;
+						//this.transforms[seq - 1] = b;
+						//this.transforms[seq] = a;
 					},
 					applyrule(seq) {
 						var inp = this.inputdata;
