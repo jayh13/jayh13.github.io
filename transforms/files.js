@@ -1,3 +1,4 @@
 [
-"NEW"
+"NEW",
+"Light Industrial.js"
 ]
