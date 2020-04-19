@@ -138,7 +138,7 @@
 						return null;
 					},
 					moveup(seq) {
-						this.splice(seq - 2, 0, this.splice(seq - 1, 1)[0]);
+						this.transforms.splice(seq - 2, 0, this.transforms.splice(seq - 1, 1)[0]);
 						//var a = this.transforms[seq - 1];
 						//var b = this.transforms[seq - 2];
 						//a.seq = seq - 1;
@@ -147,7 +147,7 @@
 						//this.transforms[seq - 2] = a;
 					},
 					movedown(seq) {
-						this.splice(seq, 0, this.splice(seq - 1, 1)[0]);
+						this.transforms.splice(seq, 0, this.transforms.splice(seq - 1, 1)[0]);
 						//var a = this.transforms[seq - 1];
 						//var b = this.transforms[seq];
 						//a.seq = seq;
