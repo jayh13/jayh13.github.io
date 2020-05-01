@@ -143,7 +143,46 @@ var app = new Vue({
       return products.filter(prod => prod.showit === true); */
       var pf = productfilter.toLowerCase().split(' ');
       return products.filter(function (prod) {
-        return (pf.length > 0 ? prod.product.toLowerCase().includes(pf[0]) || prod.instructions && prod.instructions.toLowerCase().includes(pf[0]) || prod.label && prod.label.toLowerCase().includes(pf[0]) || prod.code.toLowerCase().includes(pf[0]) : true) && (pf.length > 1 ? prod.product.toLowerCase().includes(pf[1]) || prod.instructions && prod.instructions.toLowerCase().includes(pf[1]) || prod.label && prod.label.toLowerCase().includes(pf[1]) || prod.code.toLowerCase().includes(pf[1]) : true) && (pf.length > 2 ? prod.product.toLowerCase().includes(pf[2]) || prod.instructions && prod.instructions.toLowerCase().includes(pf[2]) || prod.label && prod.label.toLowerCase().includes(pf[2]) || prod.code.toLowerCase().includes(pf[2]) : true) && (pf.length > 3 ? prod.product.toLowerCase().includes(pf[3]) || prod.instructions && prod.instructions.toLowerCase().includes(pf[3]) || prod.label && prod.label.toLowerCase().includes(pf[3]) || prod.code.toLowerCase().includes(pf[3]) : true) && (pf.length > 4 ? prod.product.toLowerCase().includes(pf[4]) || prod.instructions && prod.instructions.toLowerCase().includes(pf[4]) || prod.label && prod.label.toLowerCase().includes(pf[4]) || prod.code.toLowerCase().includes(pf[4]) : true) && (pf.length > 5 ? prod.product.toLowerCase().includes(pf[5]) || prod.instructions && prod.instructions.toLowerCase().includes(pf[5]) || prod.label && prod.label.toLowerCase().includes(pf[5]) || prod.code.toLowerCase().includes(pf[5]) : true) && (pf.length > 6 ? prod.product.toLowerCase().includes(pf[6]) || prod.instructions && prod.instructions.toLowerCase().includes(pf[6]) || prod.label && prod.label.toLowerCase().includes(pf[6]) || prod.code.toLowerCase().includes(pf[6]) : true) && (pf.length > 7 ? prod.product.toLowerCase().includes(pf[7]) || prod.instructions && prod.instructions.toLowerCase().includes(pf[7]) || prod.label && prod.label.toLowerCase().includes(pf[7]) || prod.code.toLowerCase().includes(pf[7]) : true) && (pf.length > 8 ? prod.product.toLowerCase().includes(pf[8]) || prod.instructions && prod.instructions.toLowerCase().includes(pf[8]) || prod.label && prod.label.toLowerCase().includes(pf[8]) || prod.code.toLowerCase().includes(pf[8]) : true) && (pf.length > 9 ? prod.product.toLowerCase().includes(pf[9]) || prod.instructions && prod.instructions.toLowerCase().includes(pf[9]) || prod.label && prod.label.toLowerCase().includes(pf[9]) || prod.code.toLowerCase().includes(pf[9]) : true);
+        return (pf.length > 0 ? (prod.product && prod.product.toLowerCase().includes(pf[0])) || 
+								(prod.instructions && prod.instructions.toLowerCase().includes(pf[0])) || 
+								(prod.label && prod.label.toLowerCase().includes(pf[0])) || 
+								(prod.code && prod.code.toLowerCase().includes(pf[0])) : true) && 
+				(pf.length > 1 ? (prod.product && prod.product.toLowerCase().includes(pf[1])) || 
+								(prod.instructions && prod.instructions.toLowerCase().includes(pf[1])) || 
+								(prod.label && prod.label.toLowerCase().includes(pf[1])) || 
+								(prod.code && prod.code.toLowerCase().includes(pf[1])) : true) && 
+				(pf.length > 2 ? (prod.product && prod.product.toLowerCase().includes(pf[2])) || 
+								(prod.instructions && prod.instructions.toLowerCase().includes(pf[2])) || 
+								(prod.label && prod.label.toLowerCase().includes(pf[2])) || 
+								(prod.code && prod.code.toLowerCase().includes(pf[2])) : true) && 
+				(pf.length > 3 ? (prod.product && prod.product.toLowerCase().includes(pf[3])) || 
+								(prod.instructions && prod.instructions.toLowerCase().includes(pf[3])) || 
+								(prod.label && prod.label.toLowerCase().includes(pf[3])) || 
+								(prod.code && prod.code.toLowerCase().includes(pf[3])) : true) && 
+				(pf.length > 4 ? (prod.product && prod.product.toLowerCase().includes(pf[4])) || 
+								(prod.instructions && prod.instructions.toLowerCase().includes(pf[4])) || 
+								(prod.label && prod.label.toLowerCase().includes(pf[4])) || 
+								(prod.code && prod.code.toLowerCase().includes(pf[4])) : true) && 
+				(pf.length > 5 ? (prod.product && prod.product.toLowerCase().includes(pf[5])) || 
+								(prod.instructions && prod.instructions.toLowerCase().includes(pf[5])) || 
+								(prod.label && prod.label.toLowerCase().includes(pf[5])) || 
+								(prod.code && prod.code.toLowerCase().includes(pf[5])) : true) && 
+				(pf.length > 6 ? (prod.product && prod.product.toLowerCase().includes(pf[6])) || 
+								(prod.instructions && prod.instructions.toLowerCase().includes(pf[6])) || 
+								(prod.label && prod.label.toLowerCase().includes(pf[6])) || 
+								(prod.code && prod.code.toLowerCase().includes(pf[6])) : true) && 
+				(pf.length > 7 ? (prod.product && prod.product.toLowerCase().includes(pf[7])) || 
+								(prod.instructions && prod.instructions.toLowerCase().includes(pf[7])) || 
+								(prod.label && prod.label.toLowerCase().includes(pf[7])) || 
+								(prod.code && prod.code.toLowerCase().includes(pf[7])) : true) && 
+				(pf.length > 8 ? (prod.product && prod.product.toLowerCase().includes(pf[8])) || 
+								(prod.instructions && prod.instructions.toLowerCase().includes(pf[8])) || 
+								(prod.label && prod.label.toLowerCase().includes(pf[8])) || 
+								(prod.code && prod.code.toLowerCase().includes(pf[8])) : true) && 
+				(pf.length > 9 ? (prod.product && prod.product.toLowerCase().includes(pf[9])) || 
+								(prod.instructions && prod.instructions.toLowerCase().includes(pf[9])) || 
+								(prod.label && prod.label.toLowerCase().includes(pf[9])) || 
+								(prod.code && prod.code.toLowerCase().includes(pf[9])) : true);
       }); //const rx = new RegExp('(' + productfilter.replace(/ /g, '|').toLowerCase() + ')');
       //return products.filter(prod => rx.test(prod.product.toLowerCase()));
     },
@@ -163,7 +202,66 @@ var app = new Vue({
       return options.filter(opt => opt.showit === true);	*/
       var of = optionfilter.toLowerCase().split(' ');
       return options.filter(function (opt) {
-        return (of.length > 0 ? (opt.status && opt.status.toLowerCase().includes(of[0])) || (opt.color && opt.color.toLowerCase().includes(of[0])) || (opt.rexno && opt.rexno.toLowerCase().includes(of[0])) || (opt.smisno && opt.smisno.toLowerCase().includes(of[0])) || (opt.size && opt.size.toLowerCase().includes(of[0])) || (opt.upc && opt.upc.toLowerCase().includes(of[0])) : true) && (of.length > 1 ? (opt.status && opt.status.toLowerCase().includes(of[1])) || (opt.color && opt.color.toLowerCase().includes(of[1])) || (opt.rexno && opt.rexno.toLowerCase().includes(of[1])) || (opt.smisno && opt.smisno.toLowerCase().includes(of[1])) || (opt.size && opt.size.toLowerCase().includes(of[1])) || (opt.upc && opt.upc.toLowerCase().includes(of[1])) : true) && (of.length > 2 ? (opt.status && opt.status.toLowerCase().includes(of[2])) || (opt.color && opt.color.toLowerCase().includes(of[2])) || (opt.rexno && opt.rexno.toLowerCase().includes(of[2])) || (opt.smisno && opt.smisno.toLowerCase().includes(of[2])) || (opt.size && opt.size.toLowerCase().includes(of[2])) || (opt.upc && opt.upc.toLowerCase().includes(of[2])) : true) && (of.length > 3 ? (opt.status && opt.status.toLowerCase().includes(of[3])) || (opt.color && opt.color.toLowerCase().includes(of[3])) || (opt.rexno && opt.rexno.toLowerCase().includes(of[3])) || (opt.smisno && opt.smisno.toLowerCase().includes(of[3])) || (opt.size && opt.size.toLowerCase().includes(of[3])) || (opt.upc && opt.upc.toLowerCase().includes(of[3])) : true) && (of.length > 4 ? (opt.status && opt.status.toLowerCase().includes(of[4])) || (opt.color && opt.color.toLowerCase().includes(of[4])) || (opt.rexno && opt.rexno.toLowerCase().includes(of[4])) || (opt.smisno && opt.smisno.toLowerCase().includes(of[4])) || (opt.size && opt.size.toLowerCase().includes(of[4])) || (opt.upc && opt.upc.toLowerCase().includes(of[4])) : true) && (of.length > 5 ? (opt.status && opt.status.toLowerCase().includes(of[5])) || (opt.color && opt.color.toLowerCase().includes(of[5])) || (opt.rexno && opt.rexno.toLowerCase().includes(of[5])) || (opt.smisno && opt.smisno.toLowerCase().includes(of[5])) || (opt.size && opt.size.toLowerCase().includes(of[5])) || (opt.upc && opt.upc.toLowerCase().includes(of[5])) : true) && (of.length > 6 ? (opt.status && opt.status.toLowerCase().includes(of[6])) || (opt.color && opt.color.toLowerCase().includes(of[6])) || (opt.rexno && opt.rexno.toLowerCase().includes(of[6])) || (opt.smisno && opt.smisno.toLowerCase().includes(of[6])) || (opt.size && opt.size.toLowerCase().includes(of[6])) || (opt.upc && opt.upc.toLowerCase().includes(of[6])) : true) && (of.length > 7 ? (opt.status && opt.status.toLowerCase().includes(of[7])) || (opt.color && opt.color.toLowerCase().includes(of[7])) || (opt.rexno && opt.rexno.toLowerCase().includes(of[7])) || (opt.smisno && opt.smisno.toLowerCase().includes(of[7])) || (opt.size && opt.size.toLowerCase().includes(of[7])) || (opt.upc && opt.upc.toLowerCase().includes(of[7])) : true) && (of.length > 8 ? (opt.status && opt.status.toLowerCase().includes(of[8])) || (opt.color && opt.color.toLowerCase().includes(of[8])) || (opt.rexno && opt.rexno.toLowerCase().includes(of[8])) || (opt.smisno && opt.smisno.toLowerCase().includes(of[8])) || (opt.size && opt.size.toLowerCase().includes(of[8])) || (opt.upc && opt.upc.toLowerCase().includes(of[8])) : true) && (of.length > 9 ? (opt.status && opt.status.toLowerCase().includes(of[9])) || (opt.color && opt.color.toLowerCase().includes(of[9])) || (opt.rexno && opt.rexno.toLowerCase().includes(of[9])) || (opt.smisno && opt.smisno.toLowerCase().includes(of[9])) || (opt.size && opt.size.toLowerCase().includes(of[9])) || (opt.upc && opt.upc.toLowerCase().includes(of[9])) : true);
+        return 	(of.length > 0 ? (opt.status && opt.status.toLowerCase().includes(of[0])) || 
+								(opt.color && opt.color.toLowerCase().includes(of[0])) || 
+								(opt.rexno && opt.rexno.toLowerCase().includes(of[0])) || 
+								(opt.smisno && opt.smisno.toLowerCase().includes(of[0])) || 
+								(opt.size && opt.size.toLowerCase().includes(of[0])) || 
+								(opt.upc && opt.upc.toLowerCase().includes(of[0])) : true) && 
+				(of.length > 1 ? (opt.status && opt.status.toLowerCase().includes(of[1])) || 
+								(opt.color && opt.color.toLowerCase().includes(of[1])) || 
+								(opt.rexno && opt.rexno.toLowerCase().includes(of[1])) || 
+								(opt.smisno && opt.smisno.toLowerCase().includes(of[1])) || 
+								(opt.size && opt.size.toLowerCase().includes(of[1])) || 
+								(opt.upc && opt.upc.toLowerCase().includes(of[1])) : true) && 
+				(of.length > 2 ? (opt.status && opt.status.toLowerCase().includes(of[2])) || 
+								(opt.color && opt.color.toLowerCase().includes(of[2])) || 
+								(opt.rexno && opt.rexno.toLowerCase().includes(of[2])) || 
+								(opt.smisno && opt.smisno.toLowerCase().includes(of[2])) || 
+								(opt.size && opt.size.toLowerCase().includes(of[2])) || 
+								(opt.upc && opt.upc.toLowerCase().includes(of[2])) : true) && 
+				(of.length > 3 ? (opt.status && opt.status.toLowerCase().includes(of[3])) || 
+								(opt.color && opt.color.toLowerCase().includes(of[3])) || 
+								(opt.rexno && opt.rexno.toLowerCase().includes(of[3])) || 
+								(opt.smisno && opt.smisno.toLowerCase().includes(of[3])) || 
+								(opt.size && opt.size.toLowerCase().includes(of[3])) || 
+								(opt.upc && opt.upc.toLowerCase().includes(of[3])) : true) && 
+				(of.length > 4 ? (opt.status && opt.status.toLowerCase().includes(of[4])) || 
+								(opt.color && opt.color.toLowerCase().includes(of[4])) || 
+								(opt.rexno && opt.rexno.toLowerCase().includes(of[4])) || 
+								(opt.smisno && opt.smisno.toLowerCase().includes(of[4])) || 
+								(opt.size && opt.size.toLowerCase().includes(of[4])) || 
+								(opt.upc && opt.upc.toLowerCase().includes(of[4])) : true) && 
+				(of.length > 5 ? (opt.status && opt.status.toLowerCase().includes(of[5])) || 
+								(opt.color && opt.color.toLowerCase().includes(of[5])) || 
+								(opt.rexno && opt.rexno.toLowerCase().includes(of[5])) || 
+								(opt.smisno && opt.smisno.toLowerCase().includes(of[5])) || 
+								(opt.size && opt.size.toLowerCase().includes(of[5])) || 
+								(opt.upc && opt.upc.toLowerCase().includes(of[5])) : true) && 
+				(of.length > 6 ? (opt.status && opt.status.toLowerCase().includes(of[6])) || 
+								(opt.color && opt.color.toLowerCase().includes(of[6])) || 
+								(opt.rexno && opt.rexno.toLowerCase().includes(of[6])) || 
+								(opt.smisno && opt.smisno.toLowerCase().includes(of[6])) || 
+								(opt.size && opt.size.toLowerCase().includes(of[6])) || 
+								(opt.upc && opt.upc.toLowerCase().includes(of[6])) : true) && 
+				(of.length > 7 ? (opt.status && opt.status.toLowerCase().includes(of[7])) || 
+								(opt.color && opt.color.toLowerCase().includes(of[7])) || 
+								(opt.rexno && opt.rexno.toLowerCase().includes(of[7])) || 
+								(opt.smisno && opt.smisno.toLowerCase().includes(of[7])) || 
+								(opt.size && opt.size.toLowerCase().includes(of[7])) || 
+								(opt.upc && opt.upc.toLowerCase().includes(of[7])) : true) && 
+				(of.length > 8 ? (opt.status && opt.status.toLowerCase().includes(of[8])) || 
+								(opt.color && opt.color.toLowerCase().includes(of[8])) || 
+								(opt.rexno && opt.rexno.toLowerCase().includes(of[8])) || 
+								(opt.smisno && opt.smisno.toLowerCase().includes(of[8])) || 
+								(opt.size && opt.size.toLowerCase().includes(of[8])) || 
+								(opt.upc && opt.upc.toLowerCase().includes(of[8])) : true) && 
+				(of.length > 9 ? (opt.status && opt.status.toLowerCase().includes(of[9])) || 
+								(opt.color && opt.color.toLowerCase().includes(of[9])) || 
+								(opt.rexno && opt.rexno.toLowerCase().includes(of[9])) || 
+								(opt.smisno && opt.smisno.toLowerCase().includes(of[9])) || 
+								(opt.size && opt.size.toLowerCase().includes(of[9])) || 
+								(opt.upc && opt.upc.toLowerCase().includes(of[9])) : true);
       }); //return options.filter(opt => opt.color.toLowerCase().includes(optionfilter.toLowerCase()) |
       //		opt.rexno.toLowerCase().includes(optionfilter.toLowerCase()) |
       //		opt.smisno.toLowerCase().includes(optionfilter.toLowerCase()) |
