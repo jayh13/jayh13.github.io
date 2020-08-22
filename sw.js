@@ -3,8 +3,8 @@ let cacheName = "Sherwin";
 self.addEventListener("install", function(e) {
     console.log("Sherwin service worker installation");
     e.waitUntil(
-		let initialCache = cache;
         caches.open(cacheName).then(function(cache) {
+			let initialCache = cache;
             console.log("Sherwin service worker caching dependencies");
             initialCache.map(function(url) {
                 return cache.add(url).catch(function(reason) {
