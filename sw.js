@@ -1,9 +1,9 @@
 let cacheName = "Sherwin";
-let initialCache = cache;
 // Install event
 self.addEventListener("install", function(e) {
     console.log("Sherwin service worker installation");
     e.waitUntil(
+		let initialCache = cache;
         caches.open(cacheName).then(function(cache) {
             console.log("Sherwin service worker caching dependencies");
             initialCache.map(function(url) {
