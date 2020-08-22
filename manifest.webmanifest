@@ -1,7 +1,11 @@
 {
-  "background_color": "azure",
+  "name": "Colin's Sherwin Williams Lookup",
+  "short_name": "SW Lookup",
   "description": "Colin's Sherwin Williams Quick Search",
-  "display": "fullscreen",
+  "start_url": "\/index2.html",
+  "background_color": "azure",
+  "display": "standalone",
+  "orientation": "any",
   "icons": [
     {
       "src": "\/images\/android-icon-36x36.png",
@@ -128,8 +132,5 @@
       "sizes": "310x310",
       "type": "image\/png"
     }
-  ],
-  "name": "Colin's Sherwin Williams Lookup",
-  "short_name": "SW Lookup",
-  "start_url": "\/index2.html"
+  ]
 }
