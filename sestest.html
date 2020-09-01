@@ -2,10 +2,14 @@
 	<head>
 		<title>SES Test</title>
 		<script type='javascript'>
+			function functionName(parameters) {
 			const a = document.createElement("a");
 			if (a.relList.supports("ar") == false) {
 			  alert("AR isn't supported");
 			}
+			}
+		</script>
+		<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js">
 		</script>
 	</head>
 	<body>
@@ -13,5 +17,9 @@
 		<a href='/17573A-1001/6c79d850-762e-3244-9642-fd3955b37c69.usdz' rel='ar'>
 			View the USDZ file native browser support (Safari specific)
 		</a>
+		<model-viewer alt="A 3D model of an astronaut." 
+			src="/17573A-1001/6c79d850-762e-3244-9642-fd3955b37c69.gltf" 
+			ios-src="/17573A-1001/6c79d850-762e-3244-9642-fd3955b37c69.usdz" 
+			magic-leap ar>
 	</body>
 </html>
