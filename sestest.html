@@ -25,7 +25,7 @@
 		<h1>SES Tests</h1>
 		<div>
 			<h2>Model Viewer with GLTF</h2>
-			<model-viewer alt="A 3D model of an astronaut." 
+			<model-viewer  id="model-viewer1" 
 				src="/17573A-1001/6c79d850-762e-3244-9642-fd3955b37c69.gltf" 
 				ios-src="/17573A-1001/6c79d850-762e-3244-9642-fd3955b37c69.usdz" 
 				ar ar-modes="webxr scene-viewer quick-look" ar-scale="auto" camera-controls 
@@ -35,7 +35,7 @@
 		</div>
 		<div>
 			<h2>Model Viewer with GLB</h2>
-			<model-viewer alt="A 3D model of an astronaut." 
+			<model-viewer  id="model-viewer2" 
 				src="/17573A-1001/6c79d850-762e-3244-9642-fd3955b37c69.glb" 
 				ios-src="/17573A-1001/6c79d850-762e-3244-9642-fd3955b37c69.usdz" 
 				ar ar-modes="scene-viewer webxr quick-look" ar-scale="auto" camera-controls 
@@ -45,7 +45,7 @@
 		</div>
 		<div>
 			<h2>Model Viewer with GLB</h2>
-			<model-viewer alt="A 3D model of an astronaut." 
+			<model-viewer  id="model-viewer3" 
 				src="/17573A-1001/6c79d850-762e-3244-9642-fd3955b37c69.glb" 
 				ios-src="/17573A-1001/6c79d850-762e-3244-9642-fd3955b37c69.usdz" 
 				ar ar-modes="quick-look scene-viewer webxr" ar-scale="auto" camera-controls 
@@ -54,7 +54,25 @@
 			</model-viewer>
 		</div>
 		<script>
-		  document.querySelector("model-viewer").addEventListener('ar-status', (event) => {
+		  document.querySelector("#model-viewer1").addEventListener('ar-status', (event) => {
+			if(event.detail.status === 'failed'){
+			  const error = document.querySelector("#error");
+			  error.classList.remove('hide');
+			  error.addEventListener('transitionend',(event) => {
+				error.classList.add('hide');
+			  });
+			}
+		  });
+		  document.querySelector("#model-viewer2").addEventListener('ar-status', (event) => {
+			if(event.detail.status === 'failed'){
+			  const error = document.querySelector("#error");
+			  error.classList.remove('hide');
+			  error.addEventListener('transitionend',(event) => {
+				error.classList.add('hide');
+			  });
+			}
+		  });
+		  document.querySelector("#model-viewer3").addEventListener('ar-status', (event) => {
 			if(event.detail.status === 'failed'){
 			  const error = document.querySelector("#error");
 			  error.classList.remove('hide');
