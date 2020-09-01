@@ -9,8 +9,8 @@
 			}
 			}
 		</script>
-		<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js">
-		</script>
+		<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+		<script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
 	</head>
 	<body>
 		<h1>SES Tests</h1>
@@ -20,6 +20,6 @@
 		<model-viewer alt="A 3D model of an astronaut." 
 			src="/17573A-1001/6c79d850-762e-3244-9642-fd3955b37c69.gltf" 
 			ios-src="/17573A-1001/6c79d850-762e-3244-9642-fd3955b37c69.usdz" 
-			magic-leap ar style='width: 200%'>
+			magic-leap ar style='width: 1024px; height: 1024px;'></model-viewer>
 	</body>
 </html>
