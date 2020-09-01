@@ -30,7 +30,7 @@
 				ios-src="/17573A-1001/6c79d850-762e-3244-9642-fd3955b37c69.usdz" 
 				ar ar-modes="webxr scene-viewer quick-look" ar-scale="auto" camera-controls 
 				style='width: 80%; height: 500px;'>
-			  <div id="error" class="hide">AR is not supported on this device</div>
+			  <div id="error1" class="hide">AR is not supported on this device</div>
 			</model-viewer>
 		</div>
 		<div>
@@ -40,7 +40,7 @@
 				ios-src="/17573A-1001/6c79d850-762e-3244-9642-fd3955b37c69.usdz" 
 				ar ar-modes="scene-viewer webxr quick-look" ar-scale="auto" camera-controls 
 				style='width: 80%; height: 500px;'>
-			  <div id="error" class="hide">AR is not supported on this device</div>
+			  <div id="error2" class="hide">AR is not supported on this device</div>
 			</model-viewer>
 		</div>
 		<div>
@@ -50,13 +50,13 @@
 				ios-src="/17573A-1001/6c79d850-762e-3244-9642-fd3955b37c69.usdz" 
 				ar ar-modes="quick-look scene-viewer webxr" ar-scale="auto" camera-controls 
 				style='width: 80%; height: 500px;'>
-			  <div id="error" class="hide">AR is not supported on this device</div>
+			  <div id="error3" class="hide">AR is not supported on this device</div>
 			</model-viewer>
 		</div>
 		<script>
 		  document.querySelector("#model-viewer1").addEventListener('ar-status', (event) => {
 			if(event.detail.status === 'failed'){
-			  const error = document.querySelector("#error");
+			  const error = document.querySelector("#error1");
 			  error.classList.remove('hide');
 			  error.addEventListener('transitionend',(event) => {
 				error.classList.add('hide');
@@ -65,7 +65,7 @@
 		  });
 		  document.querySelector("#model-viewer2").addEventListener('ar-status', (event) => {
 			if(event.detail.status === 'failed'){
-			  const error = document.querySelector("#error");
+			  const error = document.querySelector("#error2");
 			  error.classList.remove('hide');
 			  error.addEventListener('transitionend',(event) => {
 				error.classList.add('hide');
@@ -74,7 +74,7 @@
 		  });
 		  document.querySelector("#model-viewer3").addEventListener('ar-status', (event) => {
 			if(event.detail.status === 'failed'){
-			  const error = document.querySelector("#error");
+			  const error = document.querySelector("#error3");
 			  error.classList.remove('hide');
 			  error.addEventListener('transitionend',(event) => {
 				error.classList.add('hide');
