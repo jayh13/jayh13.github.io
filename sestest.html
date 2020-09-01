@@ -1,10 +1,17 @@
 <html>
 	<head>
-		SES Test
+		<title>SES Test</title>
+		<script type='javascript'>
+			const a = document.createElement("a");
+			if (a.relList.supports("ar") == false) {
+			  alert("AR isn't supported");
+			}
+		</script>
 	</head>
 	<body>
+		<h1>SES Tests</h1>
 		<a href='/17573A-1001/6c79d850-762e-3244-9642-fd3955b37c69.usdz' rel='ar'>
-			View the USDZ file
+			View the USDZ file native browser support (Safari specific)
 		</a>
 	</body>
 </html>
