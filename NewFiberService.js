@@ -1,10 +1,10 @@
     // Shared variables
-    var areaStage = { O1: { stage: 0, desc: "Fiber Area North 1" },
+    var areaStage = { O1: { stage: 0, desc: "Outside the planned Fiber area" },
                       N1: { stage: 1, desc: "Fiber Area North 1" },
-                      E1: { stage: 3, desc: "Fiber Area North 1" },
-                      S1: { stage: 2, desc: "Fiber Area North 1" },
-                      W1: { stage: 1, desc: "Fiber Area North 1" },
-                      C1: { stage: 6, desc: "Fiber Area North 1" }
+                      E1: { stage: 3, desc: "Fiber Area East 1" },
+                      S1: { stage: 2, desc: "Fiber Area South 1" },
+                      W1: { stage: 1, desc: "Fiber Area West 1" },
+                      C1: { stage: 6, desc: "Fiber Area Central 1" }
                     };
     var stages = [
             { color: "#000000", 
