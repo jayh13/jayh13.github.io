@@ -65,7 +65,7 @@
         addrSearchButton.addEventListener("click", event => {
             codeAddress();
         });
-        
+
         prepStageLists()
         loadKML();
 
@@ -241,8 +241,12 @@
                         mapPolys.push(mapPoly);
 
                         var elem = document.querySelector("#w-dropdown-list-" + areaStage[place.name] + " > div");
-                        elem.innerHTML = elem.innerHTML + areaTemplate.replace('{title}', place.name).replace('{description}', place.description);
+                        elem.innerHTML = elem.innerHTML + areaTemplate.replace('{title}', stages[areaStage[place.name]].name).replace('{description}', stages[areaStage[place.name]].description);
                     }
+                }
+                for (var k = 1; k <= 6; k++) {
+                    var cnt = document.querySelectorAll("#w-dropdown-list-" + k + " a").length;
+                    document.querySelector("#w-dropdown-toggle-" + k + " .filter-info-quantity-number").innerHTML = cnt;
                 }
             }
         };
