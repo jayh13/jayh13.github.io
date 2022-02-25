@@ -1,5 +1,11 @@
     // Shared variables
-    var areaStage = { O1: 0,  N1: 1, E1: 3, S1: 2, W1: 1, C1: 6};
+    var areaStage = { O1: { stage: 0, desc: "Fiber Area North 1" },
+                      N1: { stage: 1, desc: "Fiber Area North 1" },
+                      E1: { stage: 3, desc: "Fiber Area North 1" },
+                      S1: { stage: 2, desc: "Fiber Area North 1" },
+                      W1: { stage: 1, desc: "Fiber Area North 1" },
+                      C1: { stage: 6, desc: "Fiber Area North 1" }
+                    };
     var stages = [
             { color: "#000000", 
                 title: "Currently Outside Service Area",
@@ -123,9 +129,9 @@
         var lng = (typeof(e.latLng.lng) == 'function') ? e.latLng.lng() : e.latLng.lng;
         infoWindow.setContent("<b>Area: </b>" + objref.name + "<br>" + 
         objref.description + "<br>" +
-                ((areaStage[objref.name] > 0) ?
-                    "<b>Stage " + areaStage[objref.name] + ": </b>" + stages[areaStage[objref.name]].title + "<br>" + stages[areaStage[objref.name]].description + "<br><br>" : "<br>") +
-                ((areaStage[objref.name] <= 4) ?
+                ((areaStage[objref.name].stage > 0) ?
+                    "<b>Stage " + areaStage[objref.name].stage + ": </b>" + stages[areaStage[objref.name].stage].title + "<br>" + stages[areaStage[objref.name].stage].description + "<br><br>" : "<br>") +
+                ((areaStage[objref.name].stage <= 4) ?
                     "<a class='button' href='/expressInterest?area=" + objref.name + "&address=" + encodeURIComponent(addrSearchString) + "&addressresult=" + encodeURIComponent(addrSearchResult) + "&lat=" + lat + "&lng=" + lng + "'>Express Interest</a><p>" :
                     "<a class='button' href='/scheduleInstall?area=" + objref.name + "&address=" + encodeURIComponent(addrSearchString) + "&addressresult=" + encodeURIComponent(addrSearchResult) + "&lat=" + lat + "&lng=" + lng + "'>Schedule Installation</a><p>"));
         infoWindow.setPosition(e.latLng);
@@ -224,13 +230,13 @@
                         }
                         var mapPoly = new google.maps.Polygon({
                             paths: polyCoords,
-                            strokeColor: stages[areaStage[place.name]].color,
+                            strokeColor: stages[areaStage[place.name].stage].color,
                             strokeOpacity: place.name == 'O1' ? 0.0 : 0.8,
                             strokeWeight: 2,
-                            fillColor: stages[areaStage[place.name]].color,
+                            fillColor: stages[areaStage[place.name].stage].color,
                             fillOpacity: place.name == 'O1' ? 0.0 : 0.1,
                             name: place.name,
-                            description: ((place.description["#cdata"]) ? place.description["#cdata"] : place.description),
+                            description: areaStage[place.name].desc,
                         })
                         mapPoly.setMap(map);
                         mapPoly.addListener("click", function(event, objref){
@@ -240,8 +246,8 @@
                         });
                         mapPolys.push(mapPoly);
 
-                        var elem = document.querySelector("#w-dropdown-list-" + areaStage[place.name] + " > div");
-                        elem.innerHTML = elem.innerHTML + areaTemplate.replace('{title}', place.name).replace('{description}', ((place.description["#cdata"]) ? place.description["#cdata"] : place.description));
+                        var elem = document.querySelector("#w-dropdown-list-" + areaStage[place.name].stage + " > div");
+                        elem.innerHTML = elem.innerHTML + areaTemplate.replace('{title}', place.name).replace('{description}', areaStage[place.name].desc);
                     }
                 }
                 for (var k = 1; k <= 6; k++) {
