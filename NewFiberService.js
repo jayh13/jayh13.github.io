@@ -241,7 +241,7 @@
                         mapPolys.push(mapPoly);
 
                         var elem = document.querySelector("#w-dropdown-list-" + areaStage[place.name] + " > div");
-                        elem.innerHTML = elem.innerHTML + areaTemplate.replace('{title}', stages[areaStage[place.name]].name).replace('{description}', stages[areaStage[place.name]].description);
+                        elem.innerHTML = elem.innerHTML + areaTemplate.replace('{title}', place.name).replace('{description}', ((place.description["#cdata"]) ? place.description["#cdata"] : place.description));
                     }
                 }
                 for (var k = 1; k <= 6; k++) {
