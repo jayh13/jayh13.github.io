@@ -1,3 +1,4 @@
+jQuery('document').ready(function(){
     // Shared variables
     var areaStage = { O1: { stage: 0, desc: "Outside the planned Fiber area" },
                       N1: { stage: 1, desc: "Fiber Area North 1" },
@@ -128,7 +129,7 @@
         var lat = (typeof(e.latLng.lat) == 'function') ? e.latLng.lat() : e.latLng.lat;
         var lng = (typeof(e.latLng.lng) == 'function') ? e.latLng.lng() : e.latLng.lng;
         infoWindow.setContent("<b>Area: </b>" + objref.name + "<br>" + 
-        objref.description + "<br>" +
+        objref.description + "<br><br>" +
                 ((areaStage[objref.name].stage > 0) ?
                     "<b>Stage " + areaStage[objref.name].stage + ": </b>" + stages[areaStage[objref.name].stage].title + "<br>" + stages[areaStage[objref.name].stage].description + "<br><br>" : "<br>") +
                 ((areaStage[objref.name].stage <= 4) ?
@@ -442,3 +443,4 @@
         var json = X.toJson(X.toObj(X.removeWhite(xml)), xml.nodeName, "\t");
         return "{\n" + tab + (tab ? json.replace(/\t/g, tab) : json.replace(/\t|\n/g, "")) + "\n}";
     }
+});
