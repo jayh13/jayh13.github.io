@@ -65,7 +65,8 @@
         addrSearchButton.addEventListener("click", event => {
             codeAddress();
         });
-
+        
+        prepStageLists()
         loadKML();
 
         geocoder = new google.maps.Geocoder();
