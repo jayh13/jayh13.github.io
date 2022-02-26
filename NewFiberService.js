@@ -133,8 +133,8 @@
                 ((areaStage[objref.name].stage > 0) ?
                     "<b>Stage " + areaStage[objref.name].stage + ": </b>" + stages[areaStage[objref.name].stage].title + "<br>" + stages[areaStage[objref.name].stage].description + "<br><br>" : "<br>") +
                 ((areaStage[objref.name].stage <= 4) ?
-                    "<a class='button' href='/expressInterest?area=" + objref.name + "&address=" + encodeURIComponent(addrSearchString) + "&addressresult=" + encodeURIComponent(addrSearchResult) + "&lat=" + lat + "&lng=" + lng + "'>Express Interest</a><p>" :
-                    "<a class='button' href='/scheduleInstall?area=" + objref.name + "&address=" + encodeURIComponent(addrSearchString) + "&addressresult=" + encodeURIComponent(addrSearchResult) + "&lat=" + lat + "&lng=" + lng + "'>Schedule Installation</a><p>"));
+                    "<button onclick=\"expressInterest('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + "\">Express Interest</button><p>" :
+                    "<button onclick=\"scheduleInstall('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + "\">Schedule Installation</button><p>"));
         infoWindow.setPosition(e.latLng);
         infoWindow.open({
             anchor: objref,
@@ -143,6 +143,12 @@
         addrSearchString = "";
         addrSearchResult = "";
         showCoords(e, objref);
+    }
+    function expressInterest(area, address, addressresult, lat, lng) {
+        console.log("expressInterest: area=" + area + ", address=" + decodeURIComponent(address) + ", addressresult=" + decodeURIComponent(addressresult) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
+    }
+    function scheduleInstall(area, address, addressresult, lat, lng) {
+        console.log("scheduleInstall: area=" + area + ", address=" + decodeURIComponent(address) + ", addressresult=" + decodeURIComponent(addressresult) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
     }
     // Show the ballon dialog for the areas outside the construction areas if they are clicked
     function showOutsideInfoWin(e, objref) {
@@ -156,7 +162,7 @@
         infoWindow.setContent("<b>Area: </b>Outside<br>" + 
                 "Outside the planned Fiber area<br>" +
                 "<br>" +
-                "<a class='button' href='/expressInterest?area=Outside&address=" + encodeURIComponent(addrSearchString) + "&addressresult=" + encodeURIComponent(addrSearchResult) + "&lat=" + lat + "&lng=" + lng + "'>Express Interest</a><p>");
+                "<button onclick=\"expressInterest('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + "\">Express Interest</button><p>");
         infoWindow.setPosition(e.latLng);
         infoWindow.open(objref);
         addrSearchString = "";
