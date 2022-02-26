@@ -180,20 +180,34 @@ jQuery('document').ready(function(){
             var visBottomLeft = isVisible(infoWinCloseBtn);
             infoWinCloseBtn.classList.remove("gm-style-iw-c-button-shiftleft");
             infoWin.classList.remove("gm-style-iw-c-shiftdown");
-            if (visTopLeft && !visTopCenter) {
-                infoWin.classList.add("gm-style-iw-c-shiftleft");
-            } else if (!visTopLeft && visTopCenter) {
-                infoWin.classList.add("gm-style-iw-c-shiftright");
-            } else if (!visTopLeft && !visTopRight && visBottomLeft && visBottomRight) {
-                infoWin.classList.add("gm-style-iw-c-shiftdown");
-                infoWinTag.classList.add("gm-style-iw-t-shiftdown");
-            } else if (!visTopLeft && !visTopRight && visBottomLeft && !visBottomRight) {
-                infoWin.classList.add("gm-style-iw-c-shiftdownleft");
-                infoWinTag.classList.add("gm-style-iw-t-shiftdown");
-            } else if (!visTopLeft && !visTopRight && !visBottomLeft && visBottomRight) {
-                infoWin.classList.add("gm-style-iw-c-shiftdownright");
-                infoWinTag.classList.add("gm-style-iw-t-shiftdown");
-            }
+            setTimeout(() => {
+                if (visTopLeft && !visTopCenter) {
+                    infoWin.classList.add("gm-style-iw-c-trans");
+                    infoWin.classList.add("gm-style-iw-c-shiftleft");
+                } else if (!visTopLeft && visTopCenter) {
+                    infoWin.classList.add("gm-style-iw-c-trans");
+                    infoWin.classList.add("gm-style-iw-c-shiftright");
+                } else if (!visTopLeft && !visTopRight && visBottomLeft && visBottomRight) {
+                    infoWin.classList.add("gm-style-iw-c-trans");
+                    infoWin.classList.add("gm-style-iw-c-shiftdown");
+                    infoWinTag.classList.add("gm-style-iw-t-trans");
+                    infoWinTag.classList.add("gm-style-iw-t-shiftdown");
+                } else if (!visTopLeft && !visTopRight && visBottomLeft && !visBottomRight) {
+                    infoWin.classList.add("gm-style-iw-c-trans");
+                    infoWin.classList.add("gm-style-iw-c-shiftdownleft");
+                    infoWinTag.classList.add("gm-style-iw-t-trans");
+                    infoWinTag.classList.add("gm-style-iw-t-shiftdown");
+                } else if (!visTopLeft && !visTopRight && !visBottomLeft && visBottomRight) {
+                    infoWin.classList.add("gm-style-iw-c-trans");
+                    infoWin.classList.add("gm-style-iw-c-shiftdownright");
+                    infoWinTag.classList.add("gm-style-iw-t-trans");
+                    infoWinTag.classList.add("gm-style-iw-t-shiftdown");
+                }
+                setTimeout(() => {
+                    infoWin.classList.remove("gm-style-iw-c-trans");
+                    infoWinTag.classList.remove("gm-style-iw-t-trans");
+                }, 300);
+            }, 200);
         }, 200);
     }
     function showCoords(e, objref) {
