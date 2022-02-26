@@ -1,4 +1,4 @@
-jQuery('document').ready(function(){
+// jQuery('document').ready(function(){
     // Shared variables
     var areaStage = { O1: { stage: 0, desc: "Outside the planned Fiber area" },
                       N1: { stage: 1, desc: "Fiber Area North 1" },
@@ -457,4 +457,4 @@ jQuery('document').ready(function(){
         var json = X.toJson(X.toObj(X.removeWhite(xml)), xml.nodeName, "\t");
         return "{\n" + tab + (tab ? json.replace(/\t/g, tab) : json.replace(/\t|\n/g, "")) + "\n}";
     }
-});
+// });
