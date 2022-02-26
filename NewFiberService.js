@@ -73,8 +73,10 @@
             codeAddress();
         });
 
-        prepStageLists()
-        loadKML();
+        jQuery('document').ready(function(){
+            prepStageLists()
+            loadKML();
+        });
 
         geocoder = new google.maps.Geocoder();
     }
