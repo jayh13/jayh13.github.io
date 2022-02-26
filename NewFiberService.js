@@ -133,8 +133,8 @@
                 ((areaStage[objref.name].stage > 0) ?
                     "<b>Stage " + areaStage[objref.name].stage + ": </b>" + stages[areaStage[objref.name].stage].title + "<br>" + stages[areaStage[objref.name].stage].description + "<br><br>" : "<br>") +
                 ((areaStage[objref.name].stage <= 4) ?
-                    "<button onclick=\"expressInterest('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + "\">Express Interest</button><p>" :
-                    "<button onclick=\"scheduleInstall('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + "\">Schedule Installation</button><p>"));
+                    "<button onclick=\"expressInterest('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>" :
+                    "<button onclick=\"scheduleInstall('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Schedule Installation</button><p>"));
         infoWindow.setPosition(e.latLng);
         infoWindow.open({
             anchor: objref,
@@ -162,7 +162,7 @@
         infoWindow.setContent("<b>Area: </b>Outside<br>" + 
                 "Outside the planned Fiber area<br>" +
                 "<br>" +
-                "<button onclick=\"expressInterest('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + "\">Express Interest</button><p>");
+                "<button onclick=\"expressInterest('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>");
         infoWindow.setPosition(e.latLng);
         infoWindow.open(objref);
         addrSearchString = "";
@@ -171,7 +171,7 @@
         setTimeout(() => {
             var infoWin = document.querySelector('.gm-style-iw-c');
             var infoWinTag = document.querySelector('.gm-style-iw-t');
-            var infoWinCloseBtn = document.querySelector('.gm-style-iw-c button');
+            var infoWinCloseBtn = document.querySelector('.gm-style-iw-c button.gm-ui-hover-effect');
             var visTopCenter = isVisible(infoWinCloseBtn);
             infoWinCloseBtn.classList.add("gm-style-iw-c-button-shiftleft");
             var visTopLeft = isVisible(infoWinCloseBtn);
