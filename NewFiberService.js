@@ -122,12 +122,83 @@
         this.event.preventDefault();
     }
     // Show the ballon dialog for the construction areas if they are clicked on
-    function showInfoWin(e, objref) {
-        if (!infoWindow) {
-            infoWindow = new google.maps.InfoWindow({ map: map });
+    function showFiberAreaInfoWin(e, objref) {
+        // if (!infoWindow) {
+        //     infoWindow = new google.maps.InfoWindow({ map: map });
+        // } else {
+        //     infoWindow.close();
+        // }
+        var lat = (typeof(e.latLng.lat) == 'function') ? e.latLng.lat() : e.latLng.lat;
+        var lng = (typeof(e.latLng.lng) == 'function') ? e.latLng.lng() : e.latLng.lng;
+        
+        if (addrSearchString == "") {
+            geocoder
+                .geocode({ location: { lat: lat, lng: lng } })
+                .then((response) => {
+                    if (response.results[0]) {
+                        addrSearchResult = response.results[0].formatted_address;
+                    }
+                    var content = "<b>Area: </b>" + objref.name + "<br>" + 
+                    objref.description + "<br><br>" +
+                        ((areaStage[objref.name].stage > 0) ?
+                            "<b>Stage " + areaStage[objref.name].stage + ": </b>" + stages[areaStage[objref.name].stage].title + "<br>" + stages[areaStage[objref.name].stage].description + "<br><br>" : "<br>") +
+                        ((areaStage[objref.name].stage <= 4) ?
+                            "<button onclick=\"expressInterest('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>" :
+                            "<button onclick=\"scheduleInstall('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Schedule Installation</button><p>");
+                    ShowInfoWin(content, e.latLng, objref);    
+
+                    // infoWindow.setContent("<b>Area: </b>" + objref.name + "<br>" + 
+                    //     objref.description + "<br><br>" +
+                    //         ((areaStage[objref.name].stage > 0) ?
+                    //             "<b>Stage " + areaStage[objref.name].stage + ": </b>" + stages[areaStage[objref.name].stage].title + "<br>" + stages[areaStage[objref.name].stage].description + "<br><br>" : "<br>") +
+                    //         ((areaStage[objref.name].stage <= 4) ?
+                    //             "<button onclick=\"expressInterest('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>" :
+                    //             "<button onclick=\"scheduleInstall('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Schedule Installation</button><p>"));
+                    // infoWindow.setPosition(e.latLng);
+                    // infoWindow.open({
+                    //     anchor: objref,
+                    //     map: map,
+                    // }, objref);
+                    // addrSearchString = "";
+                    // addrSearchResult = "";
+                    // adjustInforWin();
+                    // showCoords(e, objref);
+                });
         } else {
-            infoWindow.close();
+            var content = "<b>Area: </b>" + objref.name + "<br>" + 
+                objref.description + "<br><br>" +
+                    ((areaStage[objref.name].stage > 0) ?
+                        "<b>Stage " + areaStage[objref.name].stage + ": </b>" + stages[areaStage[objref.name].stage].title + "<br>" + stages[areaStage[objref.name].stage].description + "<br><br>" : "<br>") +
+                    ((areaStage[objref.name].stage <= 4) ?
+                        "<button onclick=\"expressInterest('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>" :
+                        "<button onclick=\"scheduleInstall('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Schedule Installation</button><p>");
+            ShowInfoWin(content, e.latLng, objref);
+
+            // infoWindow.setContent("<b>Area: </b>" + objref.name + "<br>" + 
+            //     objref.description + "<br><br>" +
+            //         ((areaStage[objref.name].stage > 0) ?
+            //             "<b>Stage " + areaStage[objref.name].stage + ": </b>" + stages[areaStage[objref.name].stage].title + "<br>" + stages[areaStage[objref.name].stage].description + "<br><br>" : "<br>") +
+            //         ((areaStage[objref.name].stage <= 4) ?
+            //             "<button onclick=\"expressInterest('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>" :
+            //             "<button onclick=\"scheduleInstall('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Schedule Installation</button><p>"));
+            // infoWindow.setPosition(e.latLng);
+            // infoWindow.open({
+            //     anchor: objref,
+            //     map: map,
+            // }, objref);
+            // addrSearchString = "";
+            // addrSearchResult = "";
+            // adjustInforWin();
+            // showCoords(e, objref);
         }
+    }
+    // Show the ballon dialog for the areas outside the construction areas if they are clicked
+    function showOutsideInfoWin(e, objref) {
+        // if (!infoWindow) {
+        //     infoWindow = new google.maps.InfoWindow({ map: map });
+        // } else {
+        //     infoWindow.close();
+        // }
         var lat = (typeof(e.latLng.lat) == 'function') ? e.latLng.lat() : e.latLng.lat;
         var lng = (typeof(e.latLng.lng) == 'function') ? e.latLng.lng() : e.latLng.lng;
         if (addrSearchString == "") {
@@ -137,85 +208,58 @@
                     if (response.results[0]) {
                         addrSearchResult = response.results[0].formatted_address;
                     }
-                    infoWindow.setContent("<b>Area: </b>" + objref.name + "<br>" + 
-                    objref.description + "<br><br>" +
-                        ((areaStage[objref.name].stage > 0) ?
-                            "<b>Stage " + areaStage[objref.name].stage + ": </b>" + stages[areaStage[objref.name].stage].title + "<br>" + stages[areaStage[objref.name].stage].description + "<br><br>" : "<br>") +
-                        ((areaStage[objref.name].stage <= 4) ?
-                            "<button onclick=\"expressInterest('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>" :
-                            "<button onclick=\"scheduleInstall('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Schedule Installation</button><p>"));
-                    infoWindow.setPosition(e.latLng);
-                    infoWindow.open({
-                        anchor: objref,
-                        map: map,
-                    }, objref);
-                    addrSearchString = "";
-                    addrSearchResult = "";
-                    adjustInforWin();
-                    showCoords(e, objref);
+                    var content = "<b>Area: </b>Outside<br>" + 
+                        "Outside the planned Fiber area<br>" +
+                        "<br>" +
+                        "<button onclick=\"expressInterest('Outside','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>";
+                    ShowInfoWin(content, e.latLng, objref);
+
+                    // infoWindow.setContent("<b>Area: </b>Outside<br>" + 
+                    //         "Outside the planned Fiber area<br>" +
+                    //         "<br>" +
+                    //         "<button onclick=\"expressInterest('Outside','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>");
+                    // infoWindow.setPosition(e.latLng);
+                    // infoWindow.open(objref);
+                    // addrSearchString = "";
+                    // addrSearchResult = "";
+                    // adjustInforWin();
                 });
         } else {
-            infoWindow.setContent("<b>Area: </b>" + objref.name + "<br>" + 
-            objref.description + "<br><br>" +
-                ((areaStage[objref.name].stage > 0) ?
-                    "<b>Stage " + areaStage[objref.name].stage + ": </b>" + stages[areaStage[objref.name].stage].title + "<br>" + stages[areaStage[objref.name].stage].description + "<br><br>" : "<br>") +
-                ((areaStage[objref.name].stage <= 4) ?
-                    "<button onclick=\"expressInterest('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>" :
-                    "<button onclick=\"scheduleInstall('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Schedule Installation</button><p>"));
-            infoWindow.setPosition(e.latLng);
-            infoWindow.open({
-                anchor: objref,
-                map: map,
-            }, objref);
-            addrSearchString = "";
-            addrSearchResult = "";
-            adjustInforWin();
-            showCoords(e, objref);
+            var content = "<b>Area: </b>Outside<br>" + 
+                    "Outside the planned Fiber area<br>" +
+                    "<br>" +
+                    "<button onclick=\"expressInterest('Outside','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>";
+            ShowInfoWin(content, e.latLng, objref);
+
+            // infoWindow.setContent("<b>Area: </b>Outside<br>" + 
+            //         "Outside the planned Fiber area<br>" +
+            //         "<br>" +
+            //         "<button onclick=\"expressInterest('Outside','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>");
+            // infoWindow.setPosition(e.latLng);
+            // infoWindow.open(objref);
+            // addrSearchString = "";
+            // addrSearchResult = "";
+            // adjustInforWin();
         }
+    }
+    function ShowInfoWin(content, position, ref) {
+        if (!infoWindow) {
+            infoWindow = new google.maps.InfoWindow({ map: map });
+        } else {
+            infoWindow.close();
+        }
+        infoWindow.setContent(content);
+        infoWindow.setPosition(position);
+        infoWindow.open(ref);
+        addrSearchString = "";
+        addrSearchResult = "";
+        adjustInforWin();
     }
     function expressInterest(area, address, addressresult, lat, lng) {
         console.log("expressInterest: area=" + area + ", address=" + decodeURIComponent(address) + ", addressresult=" + decodeURIComponent(addressresult) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
     }
     function scheduleInstall(area, address, addressresult, lat, lng) {
         console.log("scheduleInstall: area=" + area + ", address=" + decodeURIComponent(address) + ", addressresult=" + decodeURIComponent(addressresult) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
-    }
-    // Show the ballon dialog for the areas outside the construction areas if they are clicked
-    function showOutsideInfoWin(e, objref) {
-        if (!infoWindow) {
-            infoWindow = new google.maps.InfoWindow({ map: map });
-        } else {
-            infoWindow.close();
-        }
-        var lat = (typeof(e.latLng.lat) == 'function') ? e.latLng.lat() : e.latLng.lat;
-        var lng = (typeof(e.latLng.lng) == 'function') ? e.latLng.lng() : e.latLng.lng;
-        if (addrSearchString == "") {
-            geocoder
-                .geocode({ location: { lat: lat, lng: lng } })
-                .then((response) => {
-                    if (response.results[0]) {
-                        addrSearchResult = response.results[0].formatted_address;
-                    }
-                    infoWindow.setContent("<b>Area: </b>Outside<br>" + 
-                            "Outside the planned Fiber area<br>" +
-                            "<br>" +
-                            "<button onclick=\"expressInterest('Outside','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>");
-                    infoWindow.setPosition(e.latLng);
-                    infoWindow.open(objref);
-                    addrSearchString = "";
-                    addrSearchResult = "";
-                    adjustInforWin();
-                });
-        } else {
-            infoWindow.setContent("<b>Area: </b>Outside<br>" + 
-                    "Outside the planned Fiber area<br>" +
-                    "<br>" +
-                    "<button onclick=\"expressInterest('Outside','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>");
-            infoWindow.setPosition(e.latLng);
-            infoWindow.open(objref);
-            addrSearchString = "";
-            addrSearchResult = "";
-            adjustInforWin();
-        }
     }
     function adjustInforWin() {
         // See if it's too close to the edge and move it if needed
@@ -271,14 +315,14 @@
         if (!objref.name) {
             showOutsideInfoWin(e, objref);
         }
-        var elem = document.getElementById("coords");
-        try {
-            if (typeof(e.latLng.lat) === 'function') {
-                elem.innerHTML = "<b>lat: </b>" + e.latLng.lat() + " <b>lng: </b>" + e.latLng.lng();
-            } else {
-                elem.innerHTML = "<b>lat: </b>" + e.latLng.lat + " <b>lng: </b>" + e.latLng.lng;
-            }
-        } catch {}
+        // var elem = document.getElementById("coords");
+        // try {
+        //     if (typeof(e.latLng.lat) === 'function') {
+        //         elem.innerHTML = "<b>lat: </b>" + e.latLng.lat() + " <b>lng: </b>" + e.latLng.lng();
+        //     } else {
+        //         elem.innerHTML = "<b>lat: </b>" + e.latLng.lat + " <b>lng: </b>" + e.latLng.lng;
+        //     }
+        // } catch {}
     }
     function loadKML() {
         var doc;
@@ -313,7 +357,7 @@
                         mapPoly.setMap(map);
                         mapPoly.addListener("click", function(event, objref){
                             update_timeout = setTimeout(function(event, objref){
-                                showInfoWin(event, objref);
+                                showFiberAreaInfoWin(event, objref);
                             }, 200, event, this);        
                         });
                         mapPolys.push(mapPoly);
