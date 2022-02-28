@@ -198,7 +198,7 @@
                     infoWindow.setContent("<b>Area: </b>Outside<br>" + 
                             "Outside the planned Fiber area<br>" +
                             "<br>" +
-                            "<a class='button' href='/expressInterest?area=Outside&address=" + encodeURIComponent(addrSearchString) + "&addressresult=" + encodeURIComponent(addrSearchResult) + "&lat=" + lat + "&lng=" + lng + "'>Express Interest</a><p>");
+                            "<button onclick=\"expressInterest('Outside','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>");
                     infoWindow.setPosition(e.latLng);
                     infoWindow.open(objref);
                     addrSearchString = "";
