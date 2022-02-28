@@ -186,8 +186,7 @@
             infoWindow.close();
         }
         if (position.lat > mapBounds.north || position.lat < mapBounds.south || position.lng < mapBounds.west || position.lng > mapBounds.east) {
-            alert('This is beyond the bounds of any future growth.');
-            return;
+            content = 'This is beyond the bounds of any future growth for Wadsnet Fiber.';
         }
         infoWindow.setContent(content);
         infoWindow.setPosition(position);
