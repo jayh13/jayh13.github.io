@@ -185,9 +185,9 @@
         } else {
             infoWindow.close();
         }
-        if (position.lat > mapBounds.north || position.lat < mapBounds.south || position.lng < mapBounds.west || position.lng > mapBounds.east) {
-            content = 'This is beyond the bounds of any future growth for Wadsnet Fiber.';
-        }
+        // if (position.lat > mapBounds.north || position.lat < mapBounds.south || position.lng < mapBounds.west || position.lng > mapBounds.east) {
+        //     content = 'This is beyond the bounds of any future growth for Wadsworth CityLink Fiber.';
+        // }
         infoWindow.setContent(content);
         infoWindow.setPosition(position);
         infoWindow.open(ref);
