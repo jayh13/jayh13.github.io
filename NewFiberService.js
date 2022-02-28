@@ -130,21 +130,48 @@
         }
         var lat = (typeof(e.latLng.lat) == 'function') ? e.latLng.lat() : e.latLng.lat;
         var lng = (typeof(e.latLng.lng) == 'function') ? e.latLng.lng() : e.latLng.lng;
-        infoWindow.setContent("<b>Area: </b>" + objref.name + "<br>" + 
-        objref.description + "<br><br>" +
+        if (addrSearchString == "") {
+            geocoder
+                .geocode({ location: { lat: lat, lng: lng } })
+                .then((response) => {
+                    if (response.results[0]) {
+                        addrSearchResult = response.results[0].formatted_address;
+                    }
+                    infoWindow.setContent("<b>Area: </b>" + objref.name + "<br>" + 
+                    objref.description + "<br><br>" +
+                        ((areaStage[objref.name].stage > 0) ?
+                            "<b>Stage " + areaStage[objref.name].stage + ": </b>" + stages[areaStage[objref.name].stage].title + "<br>" + stages[areaStage[objref.name].stage].description + "<br><br>" : "<br>") +
+                        ((areaStage[objref.name].stage <= 4) ?
+                            "<button onclick=\"expressInterest('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>" :
+                            "<button onclick=\"scheduleInstall('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Schedule Installation</button><p>"));
+                    infoWindow.setPosition(e.latLng);
+                    infoWindow.open({
+                        anchor: objref,
+                        map: map,
+                    }, objref);
+                    addrSearchString = "";
+                    addrSearchResult = "";
+                    adjustInforWin();
+                    showCoords(e, objref);
+                });
+        } else {
+            infoWindow.setContent("<b>Area: </b>" + objref.name + "<br>" + 
+            objref.description + "<br><br>" +
                 ((areaStage[objref.name].stage > 0) ?
                     "<b>Stage " + areaStage[objref.name].stage + ": </b>" + stages[areaStage[objref.name].stage].title + "<br>" + stages[areaStage[objref.name].stage].description + "<br><br>" : "<br>") +
                 ((areaStage[objref.name].stage <= 4) ?
                     "<button onclick=\"expressInterest('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>" :
                     "<button onclick=\"scheduleInstall('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Schedule Installation</button><p>"));
-        infoWindow.setPosition(e.latLng);
-        infoWindow.open({
-            anchor: objref,
-            map: map,
-        }, objref);
-        addrSearchString = "";
-        addrSearchResult = "";
-        showCoords(e, objref);
+            infoWindow.setPosition(e.latLng);
+            infoWindow.open({
+                anchor: objref,
+                map: map,
+            }, objref);
+            addrSearchString = "";
+            addrSearchResult = "";
+            adjustInforWin();
+            showCoords(e, objref);
+        }
     }
     function expressInterest(area, address, addressresult, lat, lng) {
         console.log("expressInterest: area=" + area + ", address=" + decodeURIComponent(address) + ", addressresult=" + decodeURIComponent(addressresult) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
@@ -161,14 +188,36 @@
         }
         var lat = (typeof(e.latLng.lat) == 'function') ? e.latLng.lat() : e.latLng.lat;
         var lng = (typeof(e.latLng.lng) == 'function') ? e.latLng.lng() : e.latLng.lng;
-        infoWindow.setContent("<b>Area: </b>Outside<br>" + 
-                "Outside the planned Fiber area<br>" +
-                "<br>" +
-                "<button onclick=\"expressInterest('Outside','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>");
-        infoWindow.setPosition(e.latLng);
-        infoWindow.open(objref);
-        addrSearchString = "";
-        addrSearchResult = "";
+        if (addrSearchString == "") {
+            geocoder
+                .geocode({ location: { lat: lat, lng: lng } })
+                .then((response) => {
+                    if (response.results[0]) {
+                        addrSearchResult = response.results[0].formatted_address;
+                    }
+                    infoWindow.setContent("<b>Area: </b>Outside<br>" + 
+                            "Outside the planned Fiber area<br>" +
+                            "<br>" +
+                            "<a class='button' href='/expressInterest?area=Outside&address=" + encodeURIComponent(addrSearchString) + "&addressresult=" + encodeURIComponent(addrSearchResult) + "&lat=" + lat + "&lng=" + lng + "'>Express Interest</a><p>");
+                    infoWindow.setPosition(e.latLng);
+                    infoWindow.open(objref);
+                    addrSearchString = "";
+                    addrSearchResult = "";
+                    adjustInforWin();
+                });
+        } else {
+            infoWindow.setContent("<b>Area: </b>Outside<br>" + 
+                    "Outside the planned Fiber area<br>" +
+                    "<br>" +
+                    "<button onclick=\"expressInterest('Outside','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>");
+            infoWindow.setPosition(e.latLng);
+            infoWindow.open(objref);
+            addrSearchString = "";
+            addrSearchResult = "";
+            adjustInforWin();
+        }
+    }
+    function adjustInforWin() {
         // See if it's too close to the edge and move it if needed
         setTimeout(() => {
             var infoWin = document.querySelector('.gm-style-iw-c');
