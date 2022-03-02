@@ -129,8 +129,16 @@
             geocoder
                 .geocode({ location: { lat: lat, lng: lng } })
                 .then((response) => {
-                    if (response.results[0]) {
-                        addrSearchResult = response.results[0].formatted_address;
+                    if (response.resuls[0]) {
+                        var result = response.results[0];
+                        if (response.results[0].types &&
+                                response.results[1] &&
+                                response.results[1].types &&
+                                response.results[0].types[0] == 'plus_code' &&
+                                response.results[1].types[0] == 'street_address') {
+                            result = response.results[1];
+                        }
+                        addrSearchResult = result.formatted_address;
                     }
                     var content = "<b>Area: </b>" + objref.name + "<br>" + 
                     objref.description + "<br><br>" +
@@ -162,8 +170,16 @@
             geocoder
                 .geocode({ location: { lat: lat, lng: lng } })
                 .then((response) => {
-                    if (response.results[0]) {
-                        addrSearchResult = response.results[0].formatted_address;
+                    if (response.resuls[0]) {
+                        var result = response.results[0];
+                        if (response.results[0].types &&
+                                response.results[1] &&
+                                response.results[1].types &&
+                                response.results[0].types[0] == 'plus_code' &&
+                                response.results[1].types[0] == 'street_address') {
+                            result = response.results[1];
+                        }
+                        addrSearchResult = result.formatted_address;
                     }
                     var content = "<b>Area: </b>Outside<br>" + 
                         "Outside the planned Fiber area<br>" +
@@ -220,6 +236,8 @@
         elem.style.display = 'block';
         elem = document.querySelector('.modal-window-express-interest .w-form-done');
         elem.style.display = 'none';
+        elem = document.querySelector('.modal-window-express-interest .w-form-fail');
+        elem.style.display = 'none';
         document.querySelector('.modal-window-express-interest .smu-form-4col-content-hidden').display = 'none';
         var modal = document.querySelector('.modal-window-express-interest');
         console.log("expressInterest: area=" + area + ", searchaddress=" + decodeURIComponent(searchaddress) + ", geocodeaddress=" + decodeURIComponent(geocodeaddress) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
@@ -251,6 +269,8 @@
         elem.style.display = 'block';
         elem = document.querySelector('.modal-window-schedule-installation .w-form-done');
         elem.style.display = 'none';
+        elem = document.querySelector('.modal-window-schedule-installation .w-form-fail');
+        elem.style.display = 'none';
         document.querySelector('.modal-window-schedule-installation .smu-form-4col-content-hidden').display = 'none';
         var modal = document.querySelector('.modal-window-schedule-installation');
         console.log("scheduleInstall: area=" + area + ", searchaddress=" + decodeURIComponent(searchaddress) + ", geocodeaddress=" + decodeURIComponent(geocodeaddress) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
@@ -258,14 +278,66 @@
         modal.style.opacity = 1;
     }
     function expressInterestSubmit() {
-        console.log('Call web service');
-        document.querySelector('.modal-window-express-interest .fiber-service-form-element').style.display = 'none';
-        document.querySelector('.modal-window-express-interest .w-form-done').style.display = 'block';
+        var fiberRequest = {
+            id: -1,
+            searchaddress: document.querySelector('#search-address').value,
+            geocodeaddress: document.querySelector('#geocode-address').value,
+            fiberarea: document.querySelector('#area').value,
+            latitude: document.querySelector('#latitude').value,
+            longitude: document.querySelector('#longitude').value,
+            firstname: document.querySelector('#first-name').value,
+            lastname: document.querySelector('#last-name').value,
+            email: document.querySelector('#email').value,
+            phonenumber: document.querySelector('#phone-number').value,
+            utilitynumber: document.querySelector('#utility-number').value
+        };
+        axios.post('/api/SignupRequest/FiberInterest', fiberRequest)
+            .then(function (response) {
+                if (response.Status == 'OK') {
+                    document.querySelector('.modal-window-express-interest .fiber-service-form-element').style.display = 'none';
+                    document.querySelector('.modal-window-express-interest .w-form-done').style.display = 'block';
+                } else {
+                    console.log(response.error);
+                    document.querySelector('.modal-window-express-interest .fiber-service-form-element').style.display = 'none';
+                    document.querySelector('.modal-window-express-interest .w-form-fail').style.display = 'block';
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+                document.querySelector('.modal-window-express-interest .fiber-service-form-element').style.display = 'none';
+                document.querySelector('.modal-window-express-interest .w-form-fail').style.display = 'block';
+            });
     }
     function scheduleInstallSubmit() {
-        console.log('Call web service');
-        document.querySelector('.modal-window-schedule-installation .fiber-service-form-element').style.display = 'none';
-        document.querySelector('.modal-window-schedule-installation .w-form-done').style.display = 'block';
+        var fiberRequest = {
+            id: -1,
+            searchaddress: document.querySelector('#search-address-2').value,
+            geocodeaddress: document.querySelector('#geocode-address-2').value,
+            fiberarea: document.querySelector('#area-2').value,
+            latitude: document.querySelector('#latitude-2').value,
+            longitude: document.querySelector('#longitude-2').value,
+            firstname: document.querySelector('#first-name-2').value,
+            lastname: document.querySelector('#last-name-2').value,
+            email: document.querySelector('#email-2').value,
+            phonenumber: document.querySelector('#phone-number-2').value,
+            utilitynumber: document.querySelector('#utility-number-2').value
+        };
+        axios.post('/api/SignupRequest/FiberInstall', fiberRequest)
+            .then(function (response) {
+                if (response.Status == 'OK') {
+                    document.querySelector('.modal-window-schedule-installation .fiber-service-form-element').style.display = 'none';
+                    document.querySelector('.modal-window-schedule-installation .w-form-done').style.display = 'block';
+                } else {
+                    console.log(response.error);
+                    document.querySelector('.modal-window-schedule-installation .fiber-service-form-element').style.display = 'none';
+                    document.querySelector('.modal-window-schedule-installation .w-form-fail').style.display = 'block';
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+                document.querySelector('.modal-window-schedule-installation .fiber-service-form-element').style.display = 'none';
+                document.querySelector('.modal-window-schedule-installation .w-form-fail').style.display = 'block';
+            });
     }
     function adjustInforWin() {
         // See if it's too close to the edge and move it if needed
