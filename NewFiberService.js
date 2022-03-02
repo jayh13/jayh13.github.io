@@ -129,7 +129,7 @@
             geocoder
                 .geocode({ location: { lat: lat, lng: lng } })
                 .then((response) => {
-                    if (response.resuls[0]) {
+                    if (response.results[0]) {
                         var result = response.results[0];
                         if (response.results[0].types &&
                                 response.results[1] &&
@@ -170,7 +170,7 @@
             geocoder
                 .geocode({ location: { lat: lat, lng: lng } })
                 .then((response) => {
-                    if (response.resuls[0]) {
+                    if (response.results[0]) {
                         var result = response.results[0];
                         if (response.results[0].types &&
                                 response.results[1] &&
@@ -241,7 +241,7 @@
         document.querySelector('.modal-window-express-interest .smu-form-4col-content-hidden').display = 'none';
         var modal = document.querySelector('.modal-window-express-interest');
         console.log("expressInterest: area=" + area + ", searchaddress=" + decodeURIComponent(searchaddress) + ", geocodeaddress=" + decodeURIComponent(geocodeaddress) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
-        modal.style.display = 'block';
+        modal.style.display = 'flex';
         modal.style.opacity = 1;
     }
     function scheduleInstall(area, searchaddress, geocodeaddress, lat, lng) {
@@ -274,7 +274,7 @@
         document.querySelector('.modal-window-schedule-installation .smu-form-4col-content-hidden').display = 'none';
         var modal = document.querySelector('.modal-window-schedule-installation');
         console.log("scheduleInstall: area=" + area + ", searchaddress=" + decodeURIComponent(searchaddress) + ", geocodeaddress=" + decodeURIComponent(geocodeaddress) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
-        modal.style.display = 'block';
+        modal.style.display = 'flex';
         modal.style.opacity = 1;
     }
     function expressInterestSubmit() {
