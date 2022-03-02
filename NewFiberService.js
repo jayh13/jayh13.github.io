@@ -220,7 +220,7 @@
         elem.style.display = 'block';
         elem = document.querySelector('.modal-window-express-interest .w-form-done');
         elem.style.display = 'none';
-        //document.querySelector('.modal-window-express-interest .smu-form-4col-content-hidden').display = 'none';
+        document.querySelector('.modal-window-express-interest .smu-form-4col-content-hidden').display = 'none';
         var modal = document.querySelector('.modal-window-express-interest');
         console.log("expressInterest: area=" + area + ", searchaddress=" + decodeURIComponent(searchaddress) + ", geocodeaddress=" + decodeURIComponent(geocodeaddress) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
         modal.style.display = 'block';
@@ -251,7 +251,7 @@
         elem.style.display = 'block';
         elem = document.querySelector('.modal-window-schedule-installation .w-form-done');
         elem.style.display = 'none';
-        // document.querySelector('.modal-window-schedule-installation .smu-form-4col-content-hidden').display = 'none';
+        document.querySelector('.modal-window-schedule-installation .smu-form-4col-content-hidden').display = 'none';
         var modal = document.querySelector('.modal-window-schedule-installation');
         console.log("scheduleInstall: area=" + area + ", searchaddress=" + decodeURIComponent(searchaddress) + ", geocodeaddress=" + decodeURIComponent(geocodeaddress) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
         modal.style.display = 'block';
