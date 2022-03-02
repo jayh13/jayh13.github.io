@@ -293,11 +293,11 @@
         };
         axios.post('/api/SignupRequest/FiberInterest', fiberRequest)
             .then(function (response) {
-                if (response.Status == 'OK') {
+                if (response.data.status == 'OK') {
                     document.querySelector('.modal-window-express-interest .fiber-service-form-element').style.display = 'none';
                     document.querySelector('.modal-window-express-interest .w-form-done').style.display = 'block';
                 } else {
-                    console.log(response.error);
+                    console.log(response.data.error);
                     document.querySelector('.modal-window-express-interest .fiber-service-form-element').style.display = 'none';
                     document.querySelector('.modal-window-express-interest .w-form-fail').style.display = 'block';
                 }
@@ -324,11 +324,11 @@
         };
         axios.post('/api/SignupRequest/FiberInstall', fiberRequest)
             .then(function (response) {
-                if (response.Status == 'OK') {
+                if (response.data.status == 'OK') {
                     document.querySelector('.modal-window-schedule-installation .fiber-service-form-element').style.display = 'none';
                     document.querySelector('.modal-window-schedule-installation .w-form-done').style.display = 'block';
                 } else {
-                    console.log(response.error);
+                    console.log(response.data.error);
                     document.querySelector('.modal-window-schedule-installation .fiber-service-form-element').style.display = 'none';
                     document.querySelector('.modal-window-schedule-installation .w-form-fail').style.display = 'block';
                 }
