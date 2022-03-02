@@ -196,30 +196,64 @@
         adjustInforWin();
     }
     function expressInterest(area, searchaddress, geocodeaddress, lat, lng) {
-        document.querySelector('#area').value = area;
-        document.querySelector('#search-address').value = searchaddress;
-        document.querySelector('#geocode-address').value = geocodeaddress;
-        document.querySelector('#latitude').value = lat;
-        document.querySelector('#longitude').value = lng;
+        var elem = document.querySelector('#area');
+        elem.value = area;
+        elem.setAttribute('readonly','readonly');
+        elem = document.querySelector('#search-address');
+        elem.value = decodeURIComponent(searchaddress);
+        elem.setAttribute('readonly','readonly');
+        elem = document.querySelector('#geocode-address');
+        elem.value = decodeURIComponent(geocodeaddress);
+        elem.setAttribute('readonly','readonly');
+        elem = document.querySelector('#latitude');
+        elem.value = lat;
+        elem.setAttribute('readonly','readonly');
+        elem = document.querySelector('#longitude');
+        elem.value = lng;
+        elem.setAttribute('readonly','readonly');
         document.querySelector('#geocode-address').setAttribute('readonly','readonly');
+        document.querySelector('#btn-express-interest').addEventListener('click', expressInterestSubmit);
         //document.querySelector('.modal-window-express-interest .smu-form-4col-content-hidden').display = 'none';
         var modal = document.querySelector('.modal-window-express-interest');
-        console.log("expressInterest: area=" + area + ", address=" + decodeURIComponent(address) + ", addressresult=" + decodeURIComponent(addressresult) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
+        console.log("expressInterest: area=" + area + ", searchaddress=" + decodeURIComponent(searchaddress) + ", geocodeaddress=" + decodeURIComponent(geocodeaddress) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
         modal.style.display = 'block';
         modal.style.opacity = 1;
     }
     function scheduleInstall(area, searchaddress, geocodeaddress, lat, lng) {
-        document.querySelector('#area-2').value = area;
-        document.querySelector('#search-address-2').value = searchaddress;
-        document.querySelector('#geocode-address-2').value = geocodeaddress;
-        document.querySelector('#latitude-2').value = lat;
-        document.querySelector('#longitude-2').value = lng;
+        var elem = document.querySelector('#area-2');
+        elem.value = area;
+        elem.setAttribute('readonly','readonly');
+        elem = document.querySelector('#search-address-2');
+        elem.value = decodeURIComponent(searchaddress);
+        elem.setAttribute('readonly','readonly');
+        elem = document.querySelector('#geocode-address-2');
+        elem.value = decodeURIComponent(geocodeaddress);
+        elem.setAttribute('readonly','readonly');
+        elem = document.querySelector('#latitude-2');
+        elem.value = lat;
+        elem.setAttribute('readonly','readonly');
+        elem = document.querySelector('#longitude-2');
+        elem.value = lng;
+        elem.setAttribute('readonly','readonly');
         document.querySelector('#geocode-address-2').setAttribute('readonly','readonly');
+        document.querySelector('#btn-express-interest').addEventListener('click', scheduleInstallSubmit);
         // document.querySelector('.modal-window-schedule-installation .smu-form-4col-content-hidden').display = 'none';
         var modal = document.querySelector('.modal-window-schedule-installation');
-        console.log("scheduleInstall: area=" + area + ", address=" + decodeURIComponent(address) + ", addressresult=" + decodeURIComponent(addressresult) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
+        console.log("scheduleInstall: area=" + area + ", searchaddress=" + decodeURIComponent(searchaddress) + ", geocodeaddress=" + decodeURIComponent(geocodeaddress) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
         modal.style.display = 'block';
         modal.style.opacity = 1;
+    }
+    function expressInterestSubmit() {
+        console.log('Call web service');
+        document.querySelector('.modal-window-express-interest .fiber-service-form-element').style.display = 'none';
+        document.querySelector('.modal-window-express-interest .w-form-done').style.display = 'block';
+        this.event.preventDefault();
+    }
+    function scheduleInstallSubmit() {
+        console.log('Call web service');
+        document.querySelector('.modal-window-schedule-installation .fiber-service-form-element').style.display = 'none';
+        document.querySelector('.modal-window-schedule-installation .w-form-done').style.display = 'block';
+        this.event.preventDefault();
     }
     function adjustInforWin() {
         // See if it's too close to the edge and move it if needed
