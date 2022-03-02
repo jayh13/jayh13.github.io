@@ -211,8 +211,15 @@
         elem = document.querySelector('#longitude');
         elem.value = lng;
         elem.setAttribute('readonly','readonly');
-        document.querySelector('#geocode-address').setAttribute('readonly','readonly');
-        document.querySelector('#btn-express-interest').addEventListener('click', expressInterestSubmit);
+        elem = document.querySelector('#geocode-address');
+        elem.setAttribute('readonly','readonly');
+        elem = document.querySelector('#btn-express-interest');
+        elem.setAttribute('type','button');
+        elem.addEventListener('click', expressInterestSubmit);
+        elem = document.querySelector('.modal-window-express-interest .fiber-service-form-element');
+        elem.style.display = 'block';
+        elem = document.querySelector('.modal-window-express-interest .w-form-done');
+        elem.style.display = 'none';
         //document.querySelector('.modal-window-express-interest .smu-form-4col-content-hidden').display = 'none';
         var modal = document.querySelector('.modal-window-express-interest');
         console.log("expressInterest: area=" + area + ", searchaddress=" + decodeURIComponent(searchaddress) + ", geocodeaddress=" + decodeURIComponent(geocodeaddress) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
@@ -235,8 +242,15 @@
         elem = document.querySelector('#longitude-2');
         elem.value = lng;
         elem.setAttribute('readonly','readonly');
-        document.querySelector('#geocode-address-2').setAttribute('readonly','readonly');
-        document.querySelector('#btn-express-interest').addEventListener('click', scheduleInstallSubmit);
+        elem = document.querySelector('#geocode-address-2');
+        elem.setAttribute('readonly','readonly');
+        elem = document.querySelector('#btn-express-interest');
+        elem.setAttribute('type','button');
+        elem.addEventListener('click', scheduleInstallSubmit);
+        elem = document.querySelector('.modal-window-schedule-installation .fiber-service-form-element');
+        elem.style.display = 'block';
+        elem = document.querySelector('.modal-window-schedule-installation .w-form-done');
+        elem.style.display = 'none';
         // document.querySelector('.modal-window-schedule-installation .smu-form-4col-content-hidden').display = 'none';
         var modal = document.querySelector('.modal-window-schedule-installation');
         console.log("scheduleInstall: area=" + area + ", searchaddress=" + decodeURIComponent(searchaddress) + ", geocodeaddress=" + decodeURIComponent(geocodeaddress) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
@@ -247,13 +261,11 @@
         console.log('Call web service');
         document.querySelector('.modal-window-express-interest .fiber-service-form-element').style.display = 'none';
         document.querySelector('.modal-window-express-interest .w-form-done').style.display = 'block';
-        this.event.preventDefault();
     }
     function scheduleInstallSubmit() {
         console.log('Call web service');
         document.querySelector('.modal-window-schedule-installation .fiber-service-form-element').style.display = 'none';
         document.querySelector('.modal-window-schedule-installation .w-form-done').style.display = 'block';
-        this.event.preventDefault();
     }
     function adjustInforWin() {
         // See if it's too close to the edge and move it if needed
