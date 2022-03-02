@@ -195,11 +195,31 @@
         addrSearchResult = "";
         adjustInforWin();
     }
-    function expressInterest(area, address, addressresult, lat, lng) {
+    function expressInterest(area, searchaddress, geocodeaddress, lat, lng) {
+        document.querySelector('#area').value = area;
+        document.querySelector('#search-address').value = searchaddress;
+        document.querySelector('#geocode-address').value = geocodeaddress;
+        document.querySelector('#latitude').value = lat;
+        document.querySelector('#longitude').value = lng;
+        document.querySelector('#geocode-address').setAttribute('readonly','readonly');
+        //document.querySelector('.modal-window-express-interest .smu-form-4col-content-hidden').display = 'none';
+        var modal = document.querySelector('.modal-window-express-interest');
         console.log("expressInterest: area=" + area + ", address=" + decodeURIComponent(address) + ", addressresult=" + decodeURIComponent(addressresult) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
+        modal.style.display = 'block';
+        modal.style.opacity = 1;
     }
-    function scheduleInstall(area, address, addressresult, lat, lng) {
+    function scheduleInstall(area, searchaddress, geocodeaddress, lat, lng) {
+        document.querySelector('#area-2').value = area;
+        document.querySelector('#search-address-2').value = searchaddress;
+        document.querySelector('#geocode-address-2').value = geocodeaddress;
+        document.querySelector('#latitude-2').value = lat;
+        document.querySelector('#longitude-2').value = lng;
+        document.querySelector('#geocode-address-2').setAttribute('readonly','readonly');
+        // document.querySelector('.modal-window-schedule-installation .smu-form-4col-content-hidden').display = 'none';
+        var modal = document.querySelector('.modal-window-schedule-installation');
         console.log("scheduleInstall: area=" + area + ", address=" + decodeURIComponent(address) + ", addressresult=" + decodeURIComponent(addressresult) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
+        modal.style.display = 'block';
+        modal.style.opacity = 1;
     }
     function adjustInforWin() {
         // See if it's too close to the edge and move it if needed
