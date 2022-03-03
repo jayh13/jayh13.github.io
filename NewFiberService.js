@@ -92,7 +92,7 @@
                 north: 41.0739906462556, south: 40.98320264727234, west: -81.82692649122862, east: -81.68006755419823
             }
         }, function (results, status) {
-            if (status == 'OK') {
+            if (status == 'success') {
                 addrSearchString = address;
                 addrSearchResult = results[0].formatted_address;
                 map.setCenter(results[0].geometry.location);
@@ -297,7 +297,7 @@
         };
         axios.post('/api/SignupRequest/FiberInterest', fiberRequest)
             .then(function (response) {
-                if (response.data.status == 'OK') {
+                if (response.data.status == 'success') {
                     document.querySelector('.modal-window-express-interest .fiber-service-form-info').style.display = 'none';
                     document.querySelector('.modal-window-express-interest .fiber-service-form-element').style.display = 'none';
                     document.querySelector('.modal-window-express-interest .w-form-done').style.display = 'block';
@@ -331,7 +331,7 @@
         };
         axios.post('/api/SignupRequest/FiberInstall', fiberRequest)
             .then(function (response) {
-                if (response.data.status == 'OK') {
+                if (response.data.status == 'success') {
                     document.querySelector('.modal-window-schedule-installation .fiber-service-form-info').style.display = 'none';
                     document.querySelector('.modal-window-schedule-installation .fiber-service-form-element').style.display = 'none';
                     document.querySelector('.modal-window-schedule-installation .w-form-done').style.display = 'block';
