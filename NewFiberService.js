@@ -92,7 +92,7 @@
                 north: 41.0739906462556, south: 40.98320264727234, west: -81.82692649122862, east: -81.68006755419823
             }
         }, function (results, status) {
-            if (status == 'success') {
+            if (status == 'OK') {
                 addrSearchString = address;
                 addrSearchResult = results[0].formatted_address;
                 map.setCenter(results[0].geometry.location);
