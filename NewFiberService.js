@@ -238,7 +238,9 @@
         elem.style.display = 'none';
         elem = document.querySelector('.modal-window-express-interest .w-form-fail');
         elem.style.display = 'none';
-        document.querySelector('.modal-window-express-interest .smu-form-4col-content-hidden').display = 'none';
+        document.querySelector('.modal-window-express-interest .smu-form-4col-content-hidden').style.display = 'none';
+        
+        document.querySelector('.modal-window-express-interest .fiber-service-form-info').style.display = 'block';
         var modal = document.querySelector('.modal-window-express-interest');
         console.log("expressInterest: area=" + area + ", searchaddress=" + decodeURIComponent(searchaddress) + ", geocodeaddress=" + decodeURIComponent(geocodeaddress) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
         modal.style.display = 'flex';
@@ -262,7 +264,7 @@
         elem.setAttribute('readonly','readonly');
         elem = document.querySelector('#geocode-address-2');
         elem.setAttribute('readonly','readonly');
-        elem = document.querySelector('#btn-express-interest');
+        elem = document.querySelector('#btn-schedule-installation');
         elem.setAttribute('type','button');
         elem.addEventListener('click', scheduleInstallSubmit);
         elem = document.querySelector('.modal-window-schedule-installation .fiber-service-form-element');
@@ -271,7 +273,9 @@
         elem.style.display = 'none';
         elem = document.querySelector('.modal-window-schedule-installation .w-form-fail');
         elem.style.display = 'none';
-        document.querySelector('.modal-window-schedule-installation .smu-form-4col-content-hidden').display = 'none';
+        document.querySelector('.modal-window-schedule-installation .smu-form-4col-content-hidden').style.display = 'none';
+        
+        document.querySelector('.modal-window-schedule-installation .fiber-service-form-info').style.display = 'block';
         var modal = document.querySelector('.modal-window-schedule-installation');
         console.log("scheduleInstall: area=" + area + ", searchaddress=" + decodeURIComponent(searchaddress) + ", geocodeaddress=" + decodeURIComponent(geocodeaddress) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
         modal.style.display = 'flex';
@@ -288,22 +292,25 @@
             firstname: document.querySelector('#first-name').value,
             lastname: document.querySelector('#last-name').value,
             email: document.querySelector('#email').value,
-            phonenumber: document.querySelector('#phone-number').value,
+            phonenumber: document.querySelector('#phone').value,
             utilitynumber: document.querySelector('#utility-number').value
         };
         axios.post('/api/SignupRequest/FiberInterest', fiberRequest)
             .then(function (response) {
                 if (response.data.status == 'OK') {
+                    document.querySelector('.modal-window-express-interest .fiber-service-form-info').style.display = 'none';
                     document.querySelector('.modal-window-express-interest .fiber-service-form-element').style.display = 'none';
                     document.querySelector('.modal-window-express-interest .w-form-done').style.display = 'block';
                 } else {
                     console.log(response.data.error);
+                    document.querySelector('.modal-window-express-interest .fiber-service-form-info').style.display = 'none';
                     document.querySelector('.modal-window-express-interest .fiber-service-form-element').style.display = 'none';
                     document.querySelector('.modal-window-express-interest .w-form-fail').style.display = 'block';
                 }
             })
             .catch(function (error) {
                 console.log(error);
+                document.querySelector('.modal-window-express-interest .fiber-service-form-info').style.display = 'none';
                 document.querySelector('.modal-window-express-interest .fiber-service-form-element').style.display = 'none';
                 document.querySelector('.modal-window-express-interest .w-form-fail').style.display = 'block';
             });
@@ -319,22 +326,25 @@
             firstname: document.querySelector('#first-name-2').value,
             lastname: document.querySelector('#last-name-2').value,
             email: document.querySelector('#email-2').value,
-            phonenumber: document.querySelector('#phone-number-2').value,
+            phonenumber: document.querySelector('#phone-2').value,
             utilitynumber: document.querySelector('#utility-number-2').value
         };
         axios.post('/api/SignupRequest/FiberInstall', fiberRequest)
             .then(function (response) {
                 if (response.data.status == 'OK') {
+                    document.querySelector('.modal-window-schedule-installation .fiber-service-form-info').style.display = 'none';
                     document.querySelector('.modal-window-schedule-installation .fiber-service-form-element').style.display = 'none';
                     document.querySelector('.modal-window-schedule-installation .w-form-done').style.display = 'block';
                 } else {
                     console.log(response.data.error);
+                    document.querySelector('.modal-window-schedule-installation .fiber-service-form-info').style.display = 'none';
                     document.querySelector('.modal-window-schedule-installation .fiber-service-form-element').style.display = 'none';
                     document.querySelector('.modal-window-schedule-installation .w-form-fail').style.display = 'block';
                 }
             })
             .catch(function (error) {
                 console.log(error);
+                document.querySelector('.modal-window-schedule-installation .fiber-service-form-info').style.display = 'none';
                 document.querySelector('.modal-window-schedule-installation .fiber-service-form-element').style.display = 'none';
                 document.querySelector('.modal-window-schedule-installation .w-form-fail').style.display = 'block';
             });
