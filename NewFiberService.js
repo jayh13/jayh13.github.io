@@ -1,49 +1,57 @@
 // jQuery('document').ready(function(){
     // Shared variables
-    var areaStage = { O1: { stage: 0, desc: "Outside the planned Fiber area" },
-                      N1: { stage: 1, desc: "Fiber Area North 1" },
-                      E1: { stage: 3, desc: "Fiber Area East 1" },
-                      S1: { stage: 2, desc: "Fiber Area South 1" },
-                      W1: { stage: 1, desc: "Fiber Area West 1" },
-                      C1: { stage: 6, desc: "Fiber Area Central 1" }
-                    };
-    var stages = [
-            { color: "#000000", 
-                title: "Currently Outside Service Area",
-                description: "But we may grow" },
-            { color: "#FFD800", 
-                title: "Interest",
-                description: "Tell us where to build" },
-            { color: "#F48000", 
-                title: "Pre Signup",
-                description: "Choose your package" },
-            { color: "#E3366F", 
-                title: "Pre Construction",
-                description: "Project Started" },
-            { color: "#70C460", 
-                title: "Construction",
-                description: "Construction Started" },
-            { color: "#BF64AC", 
-                title: "Schedule Install",
-                description: "Get ready for fiber" },
-            { color: "#14AADD", 
-                title: "Fiberhood",
-                description: "Project Complete" }
-            ];
+    var areaStage = {};
+    // { O1: { stage: 0, desc: "Outside the planned Fiber area" },
+    //                   N1: { stage: 1, desc: "Fiber Area North 1" },
+    //                   E1: { stage: 3, desc: "Fiber Area East 1" },
+    //                   S1: { stage: 2, desc: "Fiber Area South 1" },
+    //                   W1: { stage: 1, desc: "Fiber Area West 1" },
+    //                   C1: { stage: 6, desc: "Fiber Area Central 1" }
+    //                 };
+    var stages = [];
+    // [
+    //         { color: "#000000", 
+    //             title: "Currently Outside Service Area",
+    //             description: "But we may grow" },
+    //         { color: "#FFD800", 
+    //             title: "Interest",
+    //             description: "Tell us where to build" },
+    //         { color: "#F48000", 
+    //             title: "Pre Signup",
+    //             description: "Choose your package" },
+    //         { color: "#E3366F", 
+    //             title: "Pre Construction",
+    //             description: "Project Started" },
+    //         { color: "#70C460", 
+    //             title: "Construction",
+    //             description: "Construction Started" },
+    //         { color: "#BF64AC", 
+    //             title: "Schedule Install",
+    //             description: "Get ready for fiber" },
+    //         { color: "#14AADD", 
+    //             title: "Fiberhood",
+    //             description: "Project Complete" }
+    //         ];
     var fiberAreas;
     var mapPolys = [];
     var geocoder;
     var map;
-    var mapBounds = { north: 41.104052326615744, south: 40.97690805422386,
-                      west: -81.8183823409927, east: -81.66526039275051 };
+    var mapCenter = {}; // { lat: 41.0256, lng: -81.7299 };
+    var mapBounds = {};
+    // { north: 41.104052326615744, south: 40.97690805422386,
+    //                   west: -81.8183823409927, east: -81.66526039275051 };
+    var geocodeBounds = {};
+    // { north: 41.0739906462556, south: 40.98320264727234, 
+    //                       west: -81.82692649122862, east: -81.68006755419823 };
     var infoWindow;
     var update_timeout = null;
     var addrSearchString = "";
     var addrSearchResult = "";
     // Initialize the map
     function initMap() {
+        getSettings();
         map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: 41.0256, lng: -81.7299 },
+            center: mapCenter,
         });
         map.setOptions({
             'fullscreenControl': false,
@@ -80,6 +88,20 @@
 
         geocoder = new google.maps.Geocoder();
     }
+    function getSettings() {
+        axios.get('/api/settings')
+            .then(function (response) {
+                var settings = response.data;
+                this.areaStage = settings.areaStage;
+                this.stages = settings.stages;
+                this.mapCenter = settings.mapCenter;
+                this.mapBounds = settings.mapBounds;
+                this.geocodeBounds = settings.geocodeBounds;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
     // Address search
     function codeAddress() {
         if (infoWindow) {
@@ -88,9 +110,7 @@
         var address = document.getElementById('address').value;
         geocoder.geocode({
             'address': address,
-            bounds: {
-                north: 41.0739906462556, south: 40.98320264727234, west: -81.82692649122862, east: -81.68006755419823
-            }
+            bounds: geocodeBounds
         }, function (results, status) {
             if (status == 'OK') {
                 addrSearchString = address;
@@ -143,10 +163,18 @@
                     var content = "<b>Area: </b>" + objref.name + "<br>" + 
                     objref.description + "<br><br>" +
                         ((areaStage[objref.name].stage > 0) ?
-                            "<b>Stage " + areaStage[objref.name].stage + ": </b>" + stages[areaStage[objref.name].stage].title + "<br>" + stages[areaStage[objref.name].stage].description + "<br><br>" : "<br>") +
+                            "<b>Stage " + areaStage[objref.name].stage + ": </b>" + 
+                            stages[areaStage[objref.name].stage].title + "<br>" + 
+                            stages[areaStage[objref.name].stage].description + "<br><br>" : "<br>") +
                         ((areaStage[objref.name].stage <= 4) ?
-                            "<button onclick=\"expressInterest('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>" :
-                            "<button onclick=\"scheduleInstall('" + objref.name + "','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Schedule Installation</button><p>");
+                            "<button onclick=\"expressInterest('" + objref.name + "','" + 
+                                encodeURIComponent(addrSearchString) + "','" + 
+                                encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + 
+                                ")\">Express Interest</button><p>" :
+                            "<button onclick=\"scheduleInstall('" + objref.name + "','" + 
+                                encodeURIComponent(addrSearchString) + "','" + 
+                                encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + 
+                                ")\">Schedule Installation</button><p>");
                     ShowInfoWin(content, e.latLng, objref);   
                     // showCoords(e, objref); 
                 });
@@ -184,14 +212,20 @@
                     var content = "<b>Area: </b>Outside<br>" + 
                         "Outside the planned Fiber area<br>" +
                         "<br>" +
-                        "<button onclick=\"expressInterest('Outside','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>";
+                        "<button onclick=\"expressInterest('Outside','" + 
+                            encodeURIComponent(addrSearchString) + "','" + 
+                            encodeURIComponent(addrSearchResult) + "'," + 
+                            lat + "," + lng + ")\">Express Interest</button><p>";
                     ShowInfoWin(content, e.latLng, objref);
                 });
         } else {
             var content = "<b>Area: </b>Outside<br>" + 
                     "Outside the planned Fiber area<br>" +
                     "<br>" +
-                    "<button onclick=\"expressInterest('Outside','" + encodeURIComponent(addrSearchString) + "','" + encodeURIComponent(addrSearchResult) + "'," + lat + "," + lng + ")\">Express Interest</button><p>";
+                    "<button onclick=\"expressInterest('Outside','" + 
+                        encodeURIComponent(addrSearchString) + "','" + 
+                        encodeURIComponent(addrSearchResult) + "'," + 
+                        lat + "," + lng + ")\">Express Interest</button><p>";
             ShowInfoWin(content, e.latLng, objref);
         }
     }
@@ -242,7 +276,7 @@
         
         document.querySelector('.modal-window-express-interest .fiber-service-form-info').style.display = 'block';
         var modal = document.querySelector('.modal-window-express-interest');
-        console.log("expressInterest: area=" + area + ", searchaddress=" + decodeURIComponent(searchaddress) + ", geocodeaddress=" + decodeURIComponent(geocodeaddress) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
+        // console.log("expressInterest: area=" + area + ", searchaddress=" + decodeURIComponent(searchaddress) + ", geocodeaddress=" + decodeURIComponent(geocodeaddress) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
         modal.style.display = 'flex';
         modal.style.opacity = 1;
     }
@@ -277,7 +311,7 @@
         
         document.querySelector('.modal-window-schedule-installation .fiber-service-form-info').style.display = 'block';
         var modal = document.querySelector('.modal-window-schedule-installation');
-        console.log("scheduleInstall: area=" + area + ", searchaddress=" + decodeURIComponent(searchaddress) + ", geocodeaddress=" + decodeURIComponent(geocodeaddress) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
+        // console.log("scheduleInstall: area=" + area + ", searchaddress=" + decodeURIComponent(searchaddress) + ", geocodeaddress=" + decodeURIComponent(geocodeaddress) + ", lat=" + lat.toString() + ", lng=" + lng.toString());
         modal.style.display = 'flex';
         modal.style.opacity = 1;
     }
@@ -454,7 +488,8 @@
         };
         req.send(null);
     }
-    var areaTemplate = '<a href="#" class="status-check-filter-drop-link w-inline-block" tabindex="0"><div class="status-check-filter-drop-label"><b>Area: </b>{title}</div><div class="status-check-filter-drop-cta">{description}</div></a>';
+    // var areaTemplate = '<a href="#" class="status-check-filter-drop-link w-inline-block" tabindex="0"><div class="status-check-filter-drop-label"><b>Area: </b>{title}</div><div class="status-check-filter-drop-cta">{description}</div></a>';
+    var areaTemplate = '<div></div><div class="status-check-filter-drop-label"><b>Area: </b>{title}</div><div class="status-check-filter-drop-cta">{description}</div></div>';
     function prepStageLists() {
         const stageListNames = ["#w-dropdown-list-1","#w-dropdown-list-2","#w-dropdown-list-3","#w-dropdown-list-4","#w-dropdown-list-5","#w-dropdown-list-6"];
         stageListNames.forEach(id => {
