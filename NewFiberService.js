@@ -391,6 +391,7 @@
             });
     }
     function adjustInforWin() {
+        return; // Google fixed the problem
         // See if it's too close to the edge and move it if needed
         setTimeout(() => {
             var infoWin = document.querySelector('.gm-style-iw-c');
