@@ -49,58 +49,65 @@
     var addrSearchResult = "";
     // Initialize the map
     function initMap() {
-        getSettings();
-        map = new google.maps.Map(document.getElementById("map"), {
-            center: mapCenter,
+        getSettings()
+        .then((ret) => {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: mapCenter,
+            });
+            map.setOptions({
+                'fullscreenControl': false,
+                'minZoom': map.getZoom(),
+                'streetViewControl': false,
+                'restriction': {
+                    latLngBounds: mapBounds,
+                    strictBounds: false
+                }
+            });
+            var bounds = new google.maps.LatLngBounds();
+            bounds.extend({ lat: mapBounds.south, lng: mapBounds.west });
+            bounds.extend({ lat: mapBounds.north, lng: mapBounds.east });
+            window.map.fitBounds(bounds, 0);
+            map.addListener("click", function(event, objref){
+                update_timeout = setTimeout(function(event, objref){
+                    showCoords(event, objref);
+                }, 500, event, this);        
+            });
+    
+            google.maps.event.addListener(map, 'dblclick', function(event) {       
+                clearTimeout(update_timeout);
+            });
+            
+            var addrSearchButton = document.getElementById("addrSearchButton");
+            addrSearchButton.addEventListener("click", event => {
+                codeAddress();
+            });
+    
+            jQuery('document').ready(function(){
+                prepStageLists()
+                loadKML();
+            });
+    
+            geocoder = new google.maps.Geocoder();
         });
-        map.setOptions({
-            'fullscreenControl': false,
-            'minZoom': map.getZoom(),
-            'streetViewControl': false,
-            'restriction': {
-                latLngBounds: mapBounds,
-                strictBounds: false
-            }
-        });
-        var bounds = new google.maps.LatLngBounds();
-        bounds.extend({ lat: mapBounds.south, lng: mapBounds.west });
-        bounds.extend({ lat: mapBounds.north, lng: mapBounds.east });
-        window.map.fitBounds(bounds, 0);
-        map.addListener("click", function(event, objref){
-            update_timeout = setTimeout(function(event, objref){
-                showCoords(event, objref);
-            }, 500, event, this);        
-        });
-
-        google.maps.event.addListener(map, 'dblclick', function(event) {       
-            clearTimeout(update_timeout);
-        });
-        
-        var addrSearchButton = document.getElementById("addrSearchButton");
-        addrSearchButton.addEventListener("click", event => {
-            codeAddress();
-        });
-
-        jQuery('document').ready(function(){
-            prepStageLists()
-            loadKML();
-        });
-
-        geocoder = new google.maps.Geocoder();
     }
     function getSettings() {
-        axios.get('/api/settings')
-            .then(function (response) {
-                var settings = response.data;
-                this.areaStage = settings.areaStage;
-                this.stages = settings.stages;
-                this.mapCenter = settings.mapCenter;
-                this.mapBounds = settings.mapBounds;
-                this.geocodeBounds = settings.geocodeBounds;
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        return new Promise((resolve) => {
+            var theContext = this;
+            axios.get('/api/settings')
+                .then(function (response) {
+                    var settings = response.data;
+                    theContext.areaStage = settings.areaStage;
+                    theContext.stages = settings.stages;
+                    theContext.mapCenter = settings.mapCenter;
+                    theContext.mapBounds = settings.mapBounds;
+                    theContext.geocodeBounds = settings.geocodeBounds;
+                    resolve(true);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    resolve(false);
+                })
+        });
     }
     // Address search
     function codeAddress() {
