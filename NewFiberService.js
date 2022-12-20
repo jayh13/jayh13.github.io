@@ -1,48 +1,44 @@
 // jQuery('document').ready(function(){
     // Shared variables
-    var areaStage = {};
-    // { O1: { stage: 0, desc: "Outside the planned Fiber area" },
-    //                   N1: { stage: 1, desc: "Fiber Area North 1" },
-    //                   E1: { stage: 3, desc: "Fiber Area East 1" },
-    //                   S1: { stage: 2, desc: "Fiber Area South 1" },
-    //                   W1: { stage: 1, desc: "Fiber Area West 1" },
-    //                   C1: { stage: 6, desc: "Fiber Area Central 1" }
-    //                 };
-    var stages = [];
-    // [
-    //         { color: "#000000", 
-    //             title: "Currently Outside Service Area",
-    //             description: "But we may grow" },
-    //         { color: "#FFD800", 
-    //             title: "Interest",
-    //             description: "Tell us where to build" },
-    //         { color: "#F48000", 
-    //             title: "Pre Signup",
-    //             description: "Choose your package" },
-    //         { color: "#E3366F", 
-    //             title: "Pre Construction",
-    //             description: "Project Started" },
-    //         { color: "#70C460", 
-    //             title: "Construction",
-    //             description: "Construction Started" },
-    //         { color: "#BF64AC", 
-    //             title: "Schedule Install",
-    //             description: "Get ready for fiber" },
-    //         { color: "#14AADD", 
-    //             title: "Fiberhood",
-    //             description: "Project Complete" }
-    //         ];
+    var areaStage =  { O1: { stage: 0, desc: "Outside the planned Fiber area" },
+                       N1: { stage: 1, desc: "Fiber Area North 1" },
+                       E1: { stage: 3, desc: "Fiber Area East 1" },
+                       S1: { stage: 2, desc: "Fiber Area South 1" },
+                       W1: { stage: 1, desc: "Fiber Area West 1" },
+                       C1: { stage: 6, desc: "Fiber Area Central 1" }
+                     };
+    var stages = [
+             { color: "#000000", 
+                 title: "Currently Outside Service Area",
+                 description: "But we may grow" },
+             { color: "#FFD800", 
+                 title: "Interest",
+                 description: "Tell us where to build" },
+             { color: "#F48000", 
+                 title: "Pre Signup",
+                 description: "Choose your package" },
+             { color: "#E3366F", 
+                 title: "Pre Construction",
+                 description: "Project Started" },
+             { color: "#70C460", 
+                 title: "Construction",
+                 description: "Construction Started" },
+             { color: "#BF64AC", 
+                 title: "Schedule Install",
+                 description: "Get ready for fiber" },
+             { color: "#14AADD", 
+                 title: "Fiberhood",
+                 description: "Project Complete" }
+             ];
     var fiberAreas;
     var mapPolys = [];
     var geocoder;
     var map;
-    var mapCenter = {}; // { lat: 41.0256, lng: -81.7299 };
-    var mapBounds = {};
-    // { north: 41.104052326615744, south: 40.97690805422386,
-    //                   west: -81.8183823409927, east: -81.66526039275051 };
-    var geocodeBounds = {};
-    // { north: 41.0739906462556, south: 40.98320264727234, 
-    //                       west: -81.82692649122862, east: -81.68006755419823 };
+    var mapCenter = { lat: 41.0256, lng: -81.7299 };
+    var mapBounds = { north: 41.104052326615744, south: 40.97690805422386,
+                       west: -81.8183823409927, east: -81.66526039275051 };
+    var geocodeBounds = { north: 41.0739906462556, south: 40.98320264727234, 
+                           west: -81.82692649122862, east: -81.68006755419823 };
     var infoWindow;
     var update_timeout = null;
     var addrSearchString = "";
