@@ -391,7 +391,7 @@
 		<Placemark id="04A8C9D32F2009E528D1">
 			<name>N1</name>
 			<!-- <description><![CDATA[<div>Fiber Area North 1<br><a href="/interest?area=N1">Express Interest</a></div>]]></description> -->
-			<LookAt>
+			<!-- <LookAt>
 				<longitude>-81.75767562639238</longitude>
 				<latitude>41.02942187384626</latitude>
 				<altitude>324.5371606330862</altitude>
@@ -401,7 +401,7 @@
 				<range>17541.18693726137</range>
 				<altitudeMode>absolute</altitudeMode>
 			</LookAt>
-			<styleUrl>#__managed_style_1B5CAB14452009F01B3E</styleUrl>
+			<styleUrl>#__managed_style_1B5CAB14452009F01B3E</styleUrl> -->
 			<Polygon>
 				<outerBoundaryIs>
 					<LinearRing>
@@ -415,7 +415,7 @@
 		<Placemark id="053CA236BE2009EFDF70">
 			<name>W1</name>
 			<!-- <description><![CDATA[<div>Fiber Area West 1<br><a href="/interest?area=W1">Express Interest</a></div>]]></description> -->
-			<LookAt>
+			<!-- <LookAt>
 				<longitude>-81.73379133467927</longitude>
 				<latitude>41.03315557062515</latitude>
 				<altitude>361.0067243713755</altitude>
@@ -425,7 +425,7 @@
 				<range>18272.45540156728</range>
 				<altitudeMode>absolute</altitudeMode>
 			</LookAt>
-			<styleUrl>#__managed_style_129B6A6A2C2009F8D8BA</styleUrl>
+			<styleUrl>#__managed_style_129B6A6A2C2009F8D8BA</styleUrl> -->
 			<Polygon>
 				<outerBoundaryIs>
 					<LinearRing>
@@ -439,7 +439,7 @@
 		<Placemark id="03B2C21B092009F1D20F">
 			<name>C1</name>
 			<!-- <description><![CDATA[<div>Fiber Area Central 1<br><a href="/interest?area=C1">Express Interest</a></div>]]></description> -->
-			<LookAt>
+			<!-- <LookAt>
 				<longitude>-81.7289926919369</longitude>
 				<latitude>41.01948850641061</latitude>
 				<altitude>340.8557137243919</altitude>
@@ -449,7 +449,7 @@
 				<range>18292.60545018828</range>
 				<altitudeMode>absolute</altitudeMode>
 			</LookAt>
-			<styleUrl>#__managed_style_167454A6322009F9901F</styleUrl>
+			<styleUrl>#__managed_style_167454A6322009F9901F</styleUrl> -->
 			<Polygon>
 				<outerBoundaryIs>
 					<LinearRing>
@@ -463,7 +463,7 @@
 		<Placemark id="0CD5C9B2DF2009F334C7">
 			<name>S1</name>
 			<!-- <description><![CDATA[<div>Fiber Area South 1<br><a href="/interest?area=S1">Express Interest</a></div>]]></description> -->
-			<LookAt>
+			<!-- <LookAt>
 				<longitude>-81.72899269104435</longitude>
 				<latitude>41.019488510469</latitude>
 				<altitude>340.8557137823925</altitude>
@@ -473,7 +473,7 @@
 				<range>18292.60545018828</range>
 				<altitudeMode>absolute</altitudeMode>
 			</LookAt>
-			<styleUrl>#__managed_style_1C6F7FDAAA2009FA096F</styleUrl>
+			<styleUrl>#__managed_style_1C6F7FDAAA2009FA096F</styleUrl> -->
 			<Polygon>
 				<outerBoundaryIs>
 					<LinearRing>
@@ -487,7 +487,7 @@
 		<Placemark id="0AA2B93ED12009F4EA54">
 			<name>E1</name>
 			<!-- <description><![CDATA[<div>Fiber Area East 1<br><a href="/interest?area=E1">Express Interest</a></div>]]></description> -->
-			<LookAt>
+			<!-- <LookAt>
 				<longitude>-81.7289926901518</longitude>
 				<latitude>41.01948851452737</latitude>
 				<altitude>340.8557138403931</altitude>
@@ -497,7 +497,7 @@
 				<range>18292.60545018828</range>
 				<altitudeMode>absolute</altitudeMode>
 			</LookAt>
-			<styleUrl>#__managed_style_1B4860A6CF2009FA6ED1</styleUrl>
+			<styleUrl>#__managed_style_1B4860A6CF2009FA6ED1</styleUrl> -->
 			<Polygon>
 				<outerBoundaryIs>
 					<LinearRing>
