@@ -25,9 +25,9 @@
 			</BalloonStyle>
 			</Style>
 		</Style>-->
-		<Style id="__managed_style_12866BE3E0200A05B5BF">
-			<!--<styleUrl>https://earth.google.com/balloon_components/base/1.0.23.0/card_template.kml#main</styleUrl>
-			<Style>-->
+		<!-- <Style id="__managed_style_12866BE3E0200A05B5BF">
+			< !--<styleUrl>https://earth.google.com/balloon_components/base/1.0.23.0/card_template.kml#main</styleUrl>
+			<Style>-- >
 				<IconStyle>
 					<Icon>
 						<href>https://earth.google.com/earth/rpc/cc/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
@@ -44,8 +44,8 @@
 				</PolyStyle>
 				<BalloonStyle>
 			</BalloonStyle>
-			<!--</Style>-->
-		</Style>
+			< !--</Style>-- >
+		</Style> -->
 		<!--<Style id="__managed_style_0910F2D51A2009FA6ED2">
 			<styleUrl>https://earth.google.com/balloon_components/base/1.0.23.0/card_template.kml#main</styleUrl>
 			<Style>
@@ -69,9 +69,9 @@
 			</BalloonStyle>
 			</Style>
 		</Style>-->
-		<Style id="__managed_style_1B4860A6CF2009FA6ED1">
-			<!--<styleUrl>https://earth.google.com/balloon_components/base/1.0.23.0/card_template.kml#main</styleUrl>
-			<Style>-->
+		<!-- <Style id="__managed_style_1B4860A6CF2009FA6ED1">
+			< !--<styleUrl>https://earth.google.com/balloon_components/base/1.0.23.0/card_template.kml#main</styleUrl>
+			<Style>-- >
 				<IconStyle>
 					<Icon>
 						<href>https://earth.google.com/earth/rpc/cc/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
@@ -89,8 +89,8 @@
 				</PolyStyle>
 				<BalloonStyle>
 			</BalloonStyle>
-			<!--</Style>-->
-		</Style>
+			< !--</Style>-- >
+		</Style> -->
 		<!--<StyleMap id="__managed_style_0D3F04E864200A05B5BF">
 			<Pair>
 				<key>normal</key>
@@ -177,9 +177,9 @@
 				<styleUrl>#__managed_style_22BCD899B32009EC52D3</styleUrl>
 			</Pair>
 		</StyleMap>-->
-		<Style id="__managed_style_167454A6322009F9901F">
-			<!--<styleUrl>https://earth.google.com/balloon_components/base/1.0.23.0/card_template.kml#main</styleUrl>
-			<Style>-->
+		<!-- <Style id="__managed_style_167454A6322009F9901F">
+			< !--<styleUrl>https://earth.google.com/balloon_components/base/1.0.23.0/card_template.kml#main</styleUrl>
+			<Style>-- >
 				<IconStyle>
 					<Icon>
 						<href>https://earth.google.com/earth/rpc/cc/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
@@ -197,8 +197,8 @@
 				</PolyStyle>
 				<BalloonStyle>
 			</BalloonStyle>
-			<!--</Style>-->
-		</Style>
+			< !--</Style>-- >
+		</Style> -->
 		<!--<StyleMap id="__managed_style_08B81E916C2009F8D8BA">
 			<Pair>
 				<key>normal</key>
@@ -209,9 +209,9 @@
 				<styleUrl>#__managed_style_216C92C0522009F8D8BA</styleUrl>
 			</Pair>
 		</StyleMap>-->
-		<Style id="__managed_style_1C6F7FDAAA2009FA096F">
-			<!--<styleUrl>https://earth.google.com/balloon_components/base/1.0.23.0/card_template.kml#main</styleUrl>
-			<Style>-->
+		<!-- <Style id="__managed_style_1C6F7FDAAA2009FA096F">
+			< !--<styleUrl>https://earth.google.com/balloon_components/base/1.0.23.0/card_template.kml#main</styleUrl>
+			<Style>-- >
 				<IconStyle>
 					<Icon>
 						<href>https://earth.google.com/earth/rpc/cc/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
@@ -229,8 +229,8 @@
 				</PolyStyle>
 				<BalloonStyle>
 			</BalloonStyle>
-			<!--</Style>-->
-		</Style>
+			< !--</Style>-- >
+		</Style> -->
 		<!--<Style id="__managed_style_216C92C0522009F8D8BA">
 			<styleUrl>https://earth.google.com/balloon_components/base/1.0.23.0/card_template.kml#main</styleUrl>
 			<Style>
@@ -254,9 +254,9 @@
 			</BalloonStyle>
 			</Style>
 		</Style>-->
-		<Style id="__managed_style_1B5CAB14452009F01B3E">
-			<!--<styleUrl>https://earth.google.com/balloon_components/base/1.0.23.0/card_template.kml#main</styleUrl>
-			<Style>-->
+		<!-- <Style id="__managed_style_1B5CAB14452009F01B3E">
+			< !--<styleUrl>https://earth.google.com/balloon_components/base/1.0.23.0/card_template.kml#main</styleUrl>
+			<Style>-- >
 				<IconStyle>
 					<Icon>
 						<href>https://earth.google.com/earth/rpc/cc/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
@@ -274,8 +274,8 @@
 				</PolyStyle>
 				<BalloonStyle>
 			</BalloonStyle>
-			<!--</Style>-->
-		</Style>
+			< !--</Style>-- >
+		</Style> -->
 		<!--<Style id="__managed_style_001DF57E2F2009F01B3F">
 			<styleUrl>https://earth.google.com/balloon_components/base/1.0.23.0/card_template.kml#main</styleUrl>
 			<Style>
@@ -364,9 +364,9 @@
 				<styleUrl>#__managed_style_0910F2D51A2009FA6ED2</styleUrl>
 			</Pair>
 		</StyleMap>-->
-		<Style id="__managed_style_129B6A6A2C2009F8D8BA">
-			<!--<styleUrl>https://earth.google.com/balloon_components/base/1.0.23.0/card_template.kml#main</styleUrl>
-			<Style>-->
+		<!-- <Style id="__managed_style_129B6A6A2C2009F8D8BA">
+			< !--<styleUrl>https://earth.google.com/balloon_components/base/1.0.23.0/card_template.kml#main</styleUrl>
+			<Style>-- >
 				<IconStyle>
 					<Icon>
 						<href>https://earth.google.com/earth/rpc/cc/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
@@ -384,8 +384,8 @@
 				</PolyStyle>
 				<BalloonStyle>
 			</BalloonStyle>
-			<!--</Style>-->
-		</Style>
+			< !--</Style>-- >
+		</Style -->
 		<Placemark id="089831A8312009E310A1">
 			<name>Wadsworth</name>
 			<gx:mid>/m/0y_gn</gx:mid>
