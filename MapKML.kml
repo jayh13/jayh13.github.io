@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 	<Document id="1REaL5nYQgKO8yqpqFcmP8Vuk9r39P333">
-		<name>CityLink PCS Test 1</name>
+		<!-- <name>CityLink PCS Test 1</name> -->
 		<!--<Style id="__managed_style_2E7C39676B200A05B5BF">
 			<styleUrl>https://earth.google.com/balloon_components/base/1.0.23.0/card_template.kml#main</styleUrl>
 			<Style>
@@ -368,7 +368,7 @@
 				<BalloonStyle>
 			</BalloonStyle>
 		</Style> -->
-		<Placemark id="089831A8312009E310A1">
+		<!-- <Placemark id="089831A8312009E310A1">
 			<name>Wadsworth</name>
 			<gx:mid>/m/0y_gn</gx:mid>
 			<gx:fid>0x8830d1d5b5ba491d:0xf734894f6fdcef7b</gx:fid>
@@ -387,10 +387,10 @@
 				<altitudeMode>relativeToGround</altitudeMode>
 				<coordinates>-81.7298519,41.0256101,0</coordinates>
 			</Point>
-		</Placemark>
+		</Placemark> -->
 		<Placemark id="04A8C9D32F2009E528D1">
 			<name>N1</name>
-			<description><![CDATA[<div>Fiber Area North 1<br><a href="/interest?area=N1">Express Interest</a></div>]]></description>
+			<!-- <description><![CDATA[<div>Fiber Area North 1<br><a href="/interest?area=N1">Express Interest</a></div>]]></description> -->
 			<LookAt>
 				<longitude>-81.75767562639238</longitude>
 				<latitude>41.02942187384626</latitude>
@@ -414,7 +414,7 @@
 		</Placemark>
 		<Placemark id="053CA236BE2009EFDF70">
 			<name>W1</name>
-			<description><![CDATA[<div>Fiber Area West 1<br><a href="/interest?area=W1">Express Interest</a></div>]]></description>
+			<!-- <description><![CDATA[<div>Fiber Area West 1<br><a href="/interest?area=W1">Express Interest</a></div>]]></description> -->
 			<LookAt>
 				<longitude>-81.73379133467927</longitude>
 				<latitude>41.03315557062515</latitude>
@@ -438,7 +438,7 @@
 		</Placemark>
 		<Placemark id="03B2C21B092009F1D20F">
 			<name>C1</name>
-			<description><![CDATA[<div>Fiber Area Central 1<br><a href="/interest?area=C1">Express Interest</a></div>]]></description>
+			<!-- <description><![CDATA[<div>Fiber Area Central 1<br><a href="/interest?area=C1">Express Interest</a></div>]]></description> -->
 			<LookAt>
 				<longitude>-81.7289926919369</longitude>
 				<latitude>41.01948850641061</latitude>
@@ -462,7 +462,7 @@
 		</Placemark>
 		<Placemark id="0CD5C9B2DF2009F334C7">
 			<name>S1</name>
-			<description><![CDATA[<div>Fiber Area South 1<br><a href="/interest?area=S1">Express Interest</a></div>]]></description>
+			<!-- <description><![CDATA[<div>Fiber Area South 1<br><a href="/interest?area=S1">Express Interest</a></div>]]></description> -->
 			<LookAt>
 				<longitude>-81.72899269104435</longitude>
 				<latitude>41.019488510469</latitude>
@@ -486,7 +486,7 @@
 		</Placemark>
 		<Placemark id="0AA2B93ED12009F4EA54">
 			<name>E1</name>
-			<description><![CDATA[<div>Fiber Area East 1<br><a href="/interest?area=E1">Express Interest</a></div>]]></description>
+			<!-- <description><![CDATA[<div>Fiber Area East 1<br><a href="/interest?area=E1">Express Interest</a></div>]]></description> -->
 			<LookAt>
 				<longitude>-81.7289926901518</longitude>
 				<latitude>41.01948851452737</latitude>
